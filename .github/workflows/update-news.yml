@@ -5,6 +5,18 @@ on:
     # 每天 UTC 时间 0 点、8 点、16 点运行（北京时间 8 点、16 点、24 点）
     - cron: '0 0,8,16 * * *'
   workflow_dispatch: # 允许手动触发
+    inputs:
+      org:
+        description: '特定机构 (留空则更新全部)'
+        required: false
+        default: ''
+        type: choice
+        options:
+          - ''
+          - miit
+          - ndrc
+          - most
+          - cac
 
 permissions:
   contents: write
@@ -27,13 +39,14 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests beautifulsoup4
+          pip install requests
 
       - name: Fetch and update news
         run: |
           python .github/scripts/fetch_news.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TARGET_ORG: ${{ github.event.inputs.org }}
 
       - name: Commit and push if changed
         run: |
@@ -43,6 +56,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "📰 Auto-update news data $(date +'%Y-%m-%d %H:%M')"
+            git commit -m "📰 Auto-update policy news $(date +'%Y-%m-%d %H:%M')"
             git push
+            echo "✓ News data updated successfully"
           fi
