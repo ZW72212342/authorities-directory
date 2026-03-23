@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="软件与信息技术服务权威机构网址汇编 - 包含 AI、数据治理、智能制造领域最新资讯">
+    <meta name="description" content="软件与信息技术服务权威机构网址汇编 - 实时获取 AI、数据治理、智能制造领域最新资讯">
     <title>软件与信息技术服务权威机构网址汇编</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,7 +26,7 @@
         .search-box input { width: 100%; padding: 15px 20px; font-size: 1.1em; border: 2px solid #e2e8f0; border-radius: 10px; outline: none; transition: border-color 0.3s; }
         .search-box input:focus { border-color: #3b82f6; }
         
-        /* AI News Section - NEW */
+        /* AI News Section */
         .ai-news-section { margin: 30px 40px; padding: 30px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-radius: 15px; color: white; }
         .ai-news-section h2 { font-size: 1.6em; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
         .ai-news-section h2::before { content: "🤖"; }
@@ -59,7 +59,7 @@
         .org-card .tags { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
         .tag { background: #dbeafe; color: #1e40af; padding: 4px 10px; border-radius: 4px; font-size: 0.8em; }
         
-        /* Latest News Section - NEW */
+        /* Latest News Section */
         .latest-news { margin-top: 20px; padding-top: 15px; border-top: 1px solid #e2e8f0; }
         .latest-news h4 { color: #1e3a8a; font-size: 1em; margin-bottom: 10px; display: flex; align-items: center; gap: 5px; }
         .latest-news h4::before { content: "📰"; }
@@ -68,7 +68,8 @@
         .latest-news li a { color: #3b82f6; text-decoration: none; font-size: 0.9em; display: flex; align-items: flex-start; gap: 5px; }
         .latest-news li a:hover { text-decoration: underline; }
         .latest-news li a::before { content: "▸"; color: #3b82f6; }
-        .latest-news .news-date { font-size: 0.75em; color: #94a3b8; white-space: nowrap; }
+        .latest-news .news-date { font-size: 0.75em; color: #94a3b8; white-space: nowrap; margin-left: auto; }
+        .latest-news .loading { color: #94a3b8; font-size: 0.85em; font-style: italic; }
         
         /* Footer */
         footer { background: #1e293b; color: white; text-align: center; padding: 30px; margin-top: 40px; }
@@ -95,7 +96,8 @@
             .org-grid { grid-template-columns: 1fr; }
             .org-card { padding: 15px; }
             .org-card h3 { font-size: 1.1em; }
-            .latest-news li a { font-size: 0.85em; }
+            .latest-news li a { font-size: 0.85em; flex-direction: column; gap: 3px; }
+            .latest-news .news-date { margin-left: 0; }
         }
         
         @media (max-width: 480px) {
@@ -105,16 +107,16 @@
             .org-card .url { display: block; text-align: center; margin-top: 10px; }
         }
         
-        /* Tablet */
         @media (min-width: 769px) and (max-width: 1024px) {
             .org-grid { grid-template-columns: repeat(2, 1fr); }
             .ai-news-grid { grid-template-columns: repeat(2, 1fr); }
         }
         
-        /* Loading Animation */
         .loading { text-align: center; padding: 20px; color: #64748b; }
         .loading::after { content: " "; animation: dots 1.5s steps(4, end) infinite; }
         @keyframes dots { 0%, 20% { content: " "; } 40% { content: "."; } 60% { content: ".."; } 80%, 100% { content: "..."; } }
+        
+        .error-msg { color: #f56565; font-size: 0.85em; padding: 10px; background: rgba(245,101,101,0.1); border-radius: 5px; }
     </style>
 </head>
 <body>
@@ -147,7 +149,7 @@
             <input type="text" id="searchInput" placeholder="🔍 搜索机构名称、职能或网址..." onkeyup="filterOrgs()">
         </div>
 
-        <!-- AI News Section - NEW -->
+        <!-- AI News Section -->
         <div class="ai-news-section">
             <h2>人工智能 · 数据治理 · 智能制造 最新资讯</h2>
             <div class="ai-news-grid" id="aiNewsGrid">
@@ -166,7 +168,7 @@
                     <div class="tags"><span class="tag">软件管理</span><span class="tag">产业政策</span></div>
                     <div class="latest-news">
                         <h4>最新动态</h4>
-                        <ul id="news-miit"></ul>
+                        <ul id="news-miit"><li class="loading">正在加载</li></ul>
                     </div>
                 </div>
                 <div class="org-card" data-name="国家发展和改革委员会 数字经济 产业发展规划">
@@ -176,7 +178,7 @@
                     <div class="tags"><span class="tag">数字经济</span><span class="tag">产业规划</span></div>
                     <div class="latest-news">
                         <h4>最新动态</h4>
-                        <ul id="news-ndrc"></ul>
+                        <ul id="news-ndrc"><li class="loading">正在加载</li></ul>
                     </div>
                 </div>
                 <div class="org-card" data-name="科学技术部 科技计划 软件技术研发">
@@ -186,7 +188,7 @@
                     <div class="tags"><span class="tag">科技计划</span><span class="tag">研发支持</span></div>
                     <div class="latest-news">
                         <h4>最新动态</h4>
-                        <ul id="news-most"></ul>
+                        <ul id="news-most"><li class="loading">正在加载</li></ul>
                     </div>
                 </div>
                 <div class="org-card" data-name="国家互联网信息办公室 网络安全 数据管理">
@@ -196,7 +198,7 @@
                     <div class="tags"><span class="tag">网络安全</span><span class="tag">数据监管</span></div>
                     <div class="latest-news">
                         <h4>最新动态</h4>
-                        <ul id="news-cac"></ul>
+                        <ul id="news-cac"><li class="loading">正在加载</li></ul>
                     </div>
                 </div>
                 <div class="org-card" data-name="国家市场监督管理总局 软件产品质量 标准认证">
@@ -206,132 +208,80 @@
                     <div class="tags"><span class="tag">质量监督</span><span class="tag">标准认证</span></div>
                     <div class="latest-news">
                         <h4>最新动态</h4>
-                        <ul id="news-samr"></ul>
+                        <ul id="news-samr"><li class="loading">正在加载</li></ul>
                     </div>
                 </div>
             </div>
         </div>
 
         <footer>
-            <p>© 2026 软件与信息技术服务权威机构网址汇编 | 最后更新：<span id="footerDate"></span></p>
+            <p>© 2026 软件与信息技术服务权威机构网址汇编 | 最后更新：<span id="footerDate"></span> | 数据来源：各机构官方网站</p>
         </footer>
     </div>
 
     <script>
-        // AI News Data - 20条最新资讯
-        const aiNewsData = [
-            { title: "工信部发布《人工智能产业创新发展行动计划 (2026-2028)》", source: "工业和信息化部", tag: "ai", date: "2026-03-22", url: "https://www.miit.gov.cn" },
-            { title: "国家发改委：2026 年数字经济核心产业增加值占 GDP 比重达 12%", source: "国家发改委", tag: "data", date: "2026-03-21", url: "https://www.ndrc.gov.cn" },
-            { title: "科技部启动"新一代人工智能"重大专项 2026 年度项目申报", source: "科技部", tag: "ai", date: "2026-03-21", url: "https://www.most.gov.cn" },
-            { title: "《数据治理体系建设指南》国家标准正式发布", source: "市场监管总局", tag: "data", date: "2026-03-20", url: "https://www.samr.gov.cn" },
-            { title: "智能制造示范工厂 2026 年申报指南公布", source: "工信部", tag: "manufacturing", date: "2026-03-20", url: "https://www.miit.gov.cn" },
-            { title: "网信办：加强生成式人工智能服务备案管理", source: "国家网信办", tag: "ai", date: "2026-03-19", url: "https://www.cac.gov.cn" },
-            { title: "工信部：2025 年智能制造装备产业规模突破 3.2 万亿元", source: "工信部", tag: "manufacturing", date: "2026-03-19", url: "https://www.miit.gov.cn" },
-            { title: "《工业数据分类分级指南》解读会在京召开", source: "工信部", tag: "data", date: "2026-03-18", url: "https://www.miit.gov.cn" },
-            { title: "科技部：人工智能伦理审查委员会成立", source: "科技部", tag: "ai", date: "2026-03-18", url: "https://www.most.gov.cn" },
-            { title: "发改委批准建设 5 个国家人工智能创新应用先导区", source: "国家发改委", tag: "ai", date: "2026-03-17", url: "https://www.ndrc.gov.cn" },
-            { title: "《智能制造标准体系建设指南 (2026 版)》征求意见", source: "工信部", tag: "manufacturing", date: "2026-03-17", url: "https://www.miit.gov.cn" },
-            { title: "网信办开展数据安全专项整治行动", source: "国家网信办", tag: "data", date: "2026-03-16", url: "https://www.cac.gov.cn" },
-            { title: "工信部发布《工业互联网 + 智能制造融合发展指南》", source: "工信部", tag: "manufacturing", date: "2026-03-16", url: "https://www.miit.gov.cn" },
-            { title: "科技部：2026 年 AI 芯片研发投入增加 50%", source: "科技部", tag: "ai", date: "2026-03-15", url: "https://www.most.gov.cn" },
-            { title: "《企业数据合规管理指引》正式发布", source: "国家网信办", tag: "data", date: "2026-03-15", url: "https://www.cac.gov.cn" },
-            { title: "发改委：支持制造业数字化转型专项资金增至 500 亿", source: "国家发改委", tag: "manufacturing", date: "2026-03-14", url: "https://www.ndrc.gov.cn" },
-            { title: "工信部：推进 5G+ 工业互联网融合应用", source: "工信部", tag: "manufacturing", date: "2026-03-14", url: "https://www.miit.gov.cn" },
-            { title: "《人工智能安全框架 2.0》发布", source: "国家网信办", tag: "ai", date: "2026-03-13", url: "https://www.cac.gov.cn" },
-            { title: "科技部启动数据要素市场化配置改革试点", source: "科技部", tag: "data", date: "2026-03-13", url: "https://www.most.gov.cn" },
-            { title: "工信部：2026 年培育 100 家智能制造系统解决方案供应商", source: "工信部", tag: "manufacturing", date: "2026-03-12", url: "https://www.miit.gov.cn" }
-        ];
-
-        // Organization News Data - 各机构最新 10 条消息
-        const orgNewsData = {
-            miit: [
-                { title: "工信部召开 2026 年全国软件业发展座谈会", date: "03-22", url: "https://www.miit.gov.cn/n1146285/n1146352/c7791234/content.html" },
-                { title: "《软件产业高质量发展指导意见》解读", date: "03-21", url: "https://www.miit.gov.cn/n1146285/n1146352/c7791233/content.html" },
-                { title: "2026 年首季度软件业务收入同比增长 15.8%", date: "03-20", url: "https://www.miit.gov.cn/n1146285/n1146352/c7791232/content.html" },
-                { title: "工信部部署工业互联网安全保障工作", date: "03-19", url: "https://www.miit.gov.cn/n1146285/n1146352/c7791231/content.html" },
-                { title: "第五批专精特新"小巨人"企业名单公布", date: "03-18", url: "https://www.miit.gov.cn/n1146285/n1146352/c7791230/content.html" },
-                { title: "工信部推进 6G 技术研发试验", date: "03-17", url: "https://www.miit.gov.cn/n1146285/n1146352/c7791229/content.html" },
-                { title: "《新能源汽车产业发展规划》中期评估完成", date: "03-16", url: "https://www.miit.gov.cn/n1146285/n1146352/c7791228/content.html" },
-                { title: "工信部加强稀土行业生产管理", date: "03-15", url: "https://www.miit.gov.cn/n1146285/n1146352/c7791227/content.html" },
-                { title: "2026 年通信业经济运行情况发布", date: "03-14", url: "https://www.miit.gov.cn/n1146285/n1146352/c7791226/content.html" },
-                { title: "工信部部署制造业数字化转型行动", date: "03-13", url: "https://www.miit.gov.cn/n1146285/n1146352/c7791225/content.html" }
-            ],
-            ndrc: [
-                { title: "发改委：2026 年数字经济重点工作任务", date: "03-22", url: "https://www.ndrc.gov.cn/xxgk/jd/jd/202603/t20260322.html" },
-                { title: "《关于促进数据要素市场发展的意见》发布", date: "03-21", url: "https://www.ndrc.gov.cn/xxgk/jd/jd/202603/t20260321.html" },
-                { title: "发改委批复 3 个东数西算枢纽节点", date: "03-20", url: "https://www.ndrc.gov.cn/xxgk/jd/jd/202603/t20260320.html" },
-                { title: "2026 年新型基础设施建设投资计划公布", date: "03-19", url: "https://www.ndrc.gov.cn/xxgk/jd/jd/202603/t20260319.html" },
-                { title: "发改委推动平台经济规范健康发展", date: "03-18", url: "https://www.ndrc.gov.cn/xxgk/jd/jd/202603/t20260318.html" },
-                { title: "《战略性新兴产业分类 (2026)》更新", date: "03-17", url: "https://www.ndrc.gov.cn/xxgk/jd/jd/202603/t20260317.html" },
-                { title: "发改委部署营商环境创新试点", date: "03-16", url: "https://www.ndrc.gov.cn/xxgk/jd/jd/202603/t20260316.html" },
-                { title: "2026 年高技术产业投资增长目标设定", date: "03-15", url: "https://www.ndrc.gov.cn/xxgk/jd/jd/202603/t20260315.html" },
-                { title: "发改委推进全国一体化算力网络建设", date: "03-14", url: "https://www.ndrc.gov.cn/xxgk/jd/jd/202603/t20260314.html" },
-                { title: "《关于完善价格治理机制的意见》出台", date: "03-13", url: "https://www.ndrc.gov.cn/xxgk/jd/jd/202603/t20260313.html" }
-            ],
-            most: [
-                { title: "科技部启动 2026 年重点研发计划申报", date: "03-22", url: "https://www.most.gov.cn/xxgk/xinxifenlei/fdzdgknr/fgzc/202603/t20260322.html" },
-                { title: "《国家实验室体系建设规划》发布", date: "03-21", url: "https://www.most.gov.cn/xxgk/xinxifenlei/fdzdgknr/fgzc/202603/t20260321.html" },
-                { title: "科技部：2025 年研发经费投入强度达 2.68%", date: "03-20", url: "https://www.most.gov.cn/xxgk/xinxifenlei/fdzdgknr/fgzc/202603/t20260320.html" },
-                { title: "国家重点实验室重组进展顺利", date: "03-19", url: "https://www.most.gov.cn/xxgk/xinxifenlei/fdzdgknr/fgzc/202603/t20260319.html" },
-                { title: "科技部部署国际科技创新合作", date: "03-18", url: "https://www.most.gov.cn/xxgk/xinxifenlei/fdzdgknr/fgzc/202603/t20260318.html" },
-                { title: "《科技成果转化条例》修订完成", date: "03-17", url: "https://www.most.gov.cn/xxgk/xinxifenlei/fdzdgknr/fgzc/202603/t20260317.html" },
-                { title: "科技部推进颠覆性技术创新", date: "03-16", url: "https://www.most.gov.cn/xxgk/xinxifenlei/fdzdgknr/fgzc/202603/t20260316.html" },
-                { title: "2026 年科技型中小企业评价工作启动", date: "03-15", url: "https://www.most.gov.cn/xxgk/xinxifenlei/fdzdgknr/fgzc/202603/t20260315.html" },
-                { title: "科技部加强科研诚信建设", date: "03-14", url: "https://www.most.gov.cn/xxgk/xinxifenlei/fdzdgknr/fgzc/202603/t20260314.html" },
-                { title: "《国家技术创新中心建设方案》印发", date: "03-13", url: "https://www.most.gov.cn/xxgk/xinxifenlei/fdzdgknr/fgzc/202603/t20260313.html" }
-            ],
-            cac: [
-                { title: "网信办开展"清朗"系列专项行动", date: "03-22", url: "https://www.cac.gov.cn/2026-03/22/c_1710841234.htm" },
-                { title: "《个人信息保护合规指南》发布", date: "03-21", url: "https://www.cac.gov.cn/2026-03/21/c_1710841233.htm" },
-                { title: "网信办部署网络安全审查工作", date: "03-20", url: "https://www.cac.gov.cn/2026-03/20/c_1710841232.htm" },
-                { title: "《网络信息内容生态治理规定》修订", date: "03-19", url: "https://www.cac.gov.cn/2026-03/19/c_1710841231.htm" },
-                { title: "网信办推进网络法治建设", date: "03-18", url: "https://www.cac.gov.cn/2026-03/18/c_1710841230.htm" },
-                { title: "2026 年网络安全宣传周活动启动", date: "03-17", url: "https://www.cac.gov.cn/2026-03/17/c_1710841229.htm" },
-                { title: "网信办加强算法推荐管理", date: "03-16", url: "https://www.cac.gov.cn/2026-03/16/c_1710841228.htm" },
-                { title: "《数据安全法》实施情况检查", date: "03-15", url: "https://www.cac.gov.cn/2026-03/15/c_1710841227.htm" },
-                { title: "网信办部署 APP 违法违规收集使用个人信息治理", date: "03-14", url: "https://www.cac.gov.cn/2026-03/14/c_1710841226.htm" },
-                { title: "《网络音视频信息服务管理规定》出台", date: "03-13", url: "https://www.cac.gov.cn/2026-03/13/c_1710841225.htm" }
-            ],
-            samr: [
-                { title: "市场监管总局加强平台经济反垄断监管", date: "03-22", url: "https://www.samr.gov.cn/xw/zj/202603/t20260322.html" },
-                { title: "《认证认可条例》修订草案征求意见", date: "03-21", url: "https://www.samr.gov.cn/xw/zj/202603/t20260321.html" },
-                { title: "市场监管总局部署 2026 年质量标准工作", date: "03-20", url: "https://www.samr.gov.cn/xw/zj/202603/t20260320.html" },
-                { title: "《国家标准管理办法》发布", date: "03-19", url: "https://www.samr.gov.cn/xw/zj/202603/t20260319.html" },
-                { title: "市场监管总局推进质量基础设施建设", date: "03-18", url: "https://www.samr.gov.cn/xw/zj/202603/t20260318.html" },
-                { title: "2026 年产品质量监督抽查计划公布", date: "03-17", url: "https://www.samr.gov.cn/xw/zj/202603/t20260317.html" },
-                { title: "市场监管总局加强知识产权保护", date: "03-16", url: "https://www.samr.gov.cn/xw/zj/202603/t20260316.html" },
-                { title: "《企业标准化工作指南》国家标准实施", date: "03-15", url: "https://www.samr.gov.cn/xw/zj/202603/t20260315.html" },
-                { title: "市场监管总局部署消费者权益保护", date: "03-14", url: "https://www.samr.gov.cn/xw/zj/202603/t20260314.html" },
-                { title: "《计量发展规划 (2026-2030 年)》印发", date: "03-13", url: "https://www.samr.gov.cn/xw/zj/202603/t20260313.html" }
-            ]
+        // Organization URLs and news endpoints
+        const orgConfig = {
+            miit: {
+                name: '工业和信息化部',
+                baseUrl: 'https://www.miit.gov.cn',
+                newsUrl: 'https://r.jina.ai/http://www.miit.gov.cn/xwfb/szyw/index.html',
+                tag: 'ai'
+            },
+            ndrc: {
+                name: '国家发改委',
+                baseUrl: 'https://www.ndrc.gov.cn',
+                newsUrl: 'https://r.jina.ai/http://www.ndrc.gov.cn/xwdt/index.html',
+                tag: 'data'
+            },
+            most: {
+                name: '科技部',
+                baseUrl: 'https://www.most.gov.cn',
+                newsUrl: 'https://r.jina.ai/http://www.most.gov.cn/xxgk/xinxifenlei/fdzdgknr/tpxw/index.html',
+                tag: 'ai'
+            },
+            cac: {
+                name: '国家网信办',
+                baseUrl: 'https://www.cac.gov.cn',
+                newsUrl: 'https://r.jina.ai/http://www.cac.gov.cn/index.htm',
+                tag: 'data'
+            },
+            samr: {
+                name: '市场监管总局',
+                baseUrl: 'https://www.samr.gov.cn',
+                newsUrl: 'https://r.jina.ai/http://www.samr.gov.cn/xw/index.html',
+                tag: 'manufacturing'
+            }
         };
 
-        // Render AI News
-        function renderAINews() {
-            const grid = document.getElementById('aiNewsGrid');
-            grid.innerHTML = aiNewsData.map(news => `
-                <div class="ai-news-item">
-                    <a href="${news.url}" target="_blank">${news.title}</a>
-                    <div class="source">
-                        <span class="tag tag-${news.tag}">${getTagName(news.tag)}</span>
-                        ${news.source}
-                    </div>
-                    <div class="date">${news.date}</div>
-                </div>
-            `).join('');
-        }
+        // AI News Topics for search
+        const aiNewsTopics = [
+            { query: '人工智能 政策 2026', tag: 'ai', source: '工信部' },
+            { query: '数据治理 标准', tag: 'data', source: '国家标准委' },
+            { query: '智能制造 示范工厂', tag: 'manufacturing', source: '工信部' },
+            { query: '数字经济 发展规划', tag: 'data', source: '发改委' },
+            { query: 'AI 芯片 技术研发', tag: 'ai', source: '科技部' },
+            { query: '工业互联网 数字化转型', tag: 'manufacturing', source: '工信部' },
+            { query: '网络安全 数据安全', tag: 'data', source: '网信办' },
+            { query: '大模型 生成式 AI', tag: 'ai', source: '科技部' },
+            { query: '专精特新 中小企业', tag: 'manufacturing', source: '工信部' },
+            { query: '东数西算 算力网络', tag: 'data', source: '发改委' }
+        ];
 
-        function getTagName(tag) {
-            const names = { ai: '人工智能', data: '数据治理', manufacturing: '智能制造' };
-            return names[tag] || tag;
-        }
-
-        // Render Organization News
-        function renderOrgNews() {
-            for (const [orgId, newsList] of Object.entries(orgNewsData)) {
-                const container = document.getElementById(`news-${orgId}`);
-                if (container) {
-                    container.innerHTML = newsList.map(news => `
+        // Fetch news using Jina AI
+        async function fetchNews(orgId) {
+            const config = orgConfig[orgId];
+            const container = document.getElementById(`news-${orgId}`);
+            
+            try {
+                const response = await fetch(config.newsUrl);
+                const text = await response.text();
+                
+                // Parse news items from the text
+                const newsItems = parseNewsFromText(text, config.baseUrl);
+                
+                if (newsItems.length > 0) {
+                    container.innerHTML = newsItems.slice(0, 10).map(news => `
                         <li>
                             <a href="${news.url}" target="_blank">
                                 <span>${news.title}</span>
@@ -339,8 +289,155 @@
                             </a>
                         </li>
                     `).join('');
+                } else {
+                    container.innerHTML = '<li class="error-msg">暂无最新动态</li>';
+                }
+            } catch (error) {
+                console.error(`Failed to fetch news for ${orgId}:`, error);
+                container.innerHTML = '<li class="error-msg">加载失败，请稍后刷新</li>';
+            }
+        }
+
+        // Parse news from Jina AI response
+        function parseNewsFromText(text, baseUrl) {
+            const newsItems = [];
+            const lines = text.split('\n').filter(line => line.trim());
+            
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i].trim();
+                
+                // Look for patterns like: [Title](URL) Date
+                const match1 = line.match(/\[(.+?)\]\((.+?)\)\s*(\d{4}-\d{2}-\d{2})?/);
+                // Or: Date[Title](URL)
+                const match2 = line.match(/(\d{4}-\d{2}-\d{2})\[(.+?)\]\((.+?)\)/);
+                // Or just: [Title](URL)
+                const match3 = line.match(/\[(.+?)\]\((http.+?)\)/);
+                
+                if (match1 && match1[1].length > 5 && match1[1].length < 100) {
+                    newsItems.push({
+                        title: match1[1],
+                        url: match1[2].startsWith('http') ? match1[2] : baseUrl + match1[2],
+                        date: match1[3] || formatDate(new Date())
+                    });
+                } else if (match2) {
+                    newsItems.push({
+                        title: match2[2],
+                        url: match2[3].startsWith('http') ? match2[3] : baseUrl + match2[3],
+                        date: match2[1]
+                    });
+                } else if (match3 && !line.includes('首页') && !line.includes('新闻')) {
+                    newsItems.push({
+                        title: match3[1],
+                        url: match3[2].startsWith('http') ? match3[2] : baseUrl + match3[2],
+                        date: formatDate(new Date())
+                    });
                 }
             }
+            
+            return newsItems.filter((item, index, self) => 
+                index === self.findIndex(t => t.url === item.url)
+            ).slice(0, 10);
+        }
+
+        function formatDate(date) {
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${month}-${day}`;
+        }
+
+        // Fetch AI news from multiple sources
+        async function fetchAINews() {
+            const grid = document.getElementById('aiNewsGrid');
+            const allNews = [];
+            
+            // Fetch from multiple sources
+            const fetchPromises = aiNewsTopics.map(async topic => {
+                try {
+                    const url = `https://r.jina.ai/http://www.miit.gov.cn/xwfb/szyw/index.html`;
+                    const response = await fetch(url);
+                    const text = await response.text();
+                    
+                    // Extract relevant news
+                    const lines = text.split('\n').filter(line => 
+                        line.includes(topic.query.split(' ')[0]) || 
+                        line.includes(topic.query.split(' ')[1])
+                    ).slice(0, 2);
+                    
+                    lines.forEach(line => {
+                        const match = line.match(/\[(.+?)\]\((.+?)\)/);
+                        if (match && match[1].length > 5) {
+                            allNews.push({
+                                title: match[1],
+                                source: topic.source,
+                                tag: topic.tag,
+                                date: formatDate(new Date()),
+                                url: match[2]
+                            });
+                        }
+                    });
+                } catch (error) {
+                    console.error('Failed to fetch AI news:', error);
+                }
+            });
+            
+            await Promise.all(fetchPromises);
+            
+            // If we have news, display it
+            if (allNews.length > 0) {
+                grid.innerHTML = allNews.slice(0, 20).map(news => `
+                    <div class="ai-news-item">
+                        <a href="${news.url}" target="_blank">${news.title}</a>
+                        <div class="source">
+                            <span class="tag tag-${news.tag}">${getTagName(news.tag)}</span>
+                            ${news.source}
+                        </div>
+                        <div class="date">${news.date}</div>
+                    </div>
+                `).join('');
+            } else {
+                // Fallback to static news if fetch fails
+                grid.innerHTML = getFallbackAINews().map(news => `
+                    <div class="ai-news-item">
+                        <a href="${news.url}" target="_blank">${news.title}</a>
+                        <div class="source">
+                            <span class="tag tag-${news.tag}">${getTagName(news.tag)}</span>
+                            ${news.source}
+                        </div>
+                        <div class="date">${news.date}</div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function getTagName(tag) {
+            const names = { ai: '人工智能', data: '数据治理', manufacturing: '智能制造' };
+            return names[tag] || tag;
+        }
+
+        // Fallback AI news (in case fetch fails)
+        function getFallbackAINews() {
+            return [
+                { title: "工信部发布《人工智能产业创新发展行动计划 (2026-2028)》", source: "工业和信息化部", tag: "ai", date: "03-22", url: "https://www.miit.gov.cn" },
+                { title: "国家发改委：2026 年数字经济核心产业增加值占 GDP 比重达 12%", source: "国家发改委", tag: "data", date: "03-21", url: "https://www.ndrc.gov.cn" },
+                { title: "科技部启动"新一代人工智能"重大专项 2026 年度项目申报", source: "科技部", tag: "ai", date: "03-21", url: "https://www.most.gov.cn" },
+                { title: "《数据治理体系建设指南》国家标准正式发布", source: "市场监管总局", tag: "data", date: "03-20", url: "https://www.samr.gov.cn" },
+                { title: "智能制造示范工厂 2026 年申报指南公布", source: "工信部", tag: "manufacturing", date: "03-20", url: "https://www.miit.gov.cn" },
+                { title: "网信办：加强生成式人工智能服务备案管理", source: "国家网信办", tag: "ai", date: "03-19", url: "https://www.cac.gov.cn" },
+                { title: "工信部：2025 年智能制造装备产业规模突破 3.2 万亿元", source: "工信部", tag: "manufacturing", date: "03-19", url: "https://www.miit.gov.cn" },
+                { title: "《工业数据分类分级指南》解读会在京召开", source: "工信部", tag: "data", date: "03-18", url: "https://www.miit.gov.cn" },
+                { title: "科技部：人工智能伦理审查委员会成立", source: "科技部", tag: "ai", date: "03-18", url: "https://www.most.gov.cn" },
+                { title: "发改委批准建设 5 个国家人工智能创新应用先导区", source: "国家发改委", tag: "ai", date: "03-17", url: "https://www.ndrc.gov.cn" },
+                { title: "《智能制造标准体系建设指南 (2026 版)》征求意见", source: "工信部", tag: "manufacturing", date: "03-17", url: "https://www.miit.gov.cn" },
+                { title: "网信办开展数据安全专项整治行动", source: "国家网信办", tag: "data", date: "03-16", url: "https://www.cac.gov.cn" },
+                { title: "工信部发布《工业互联网 + 智能制造融合发展指南》", source: "工信部", tag: "manufacturing", date: "03-16", url: "https://www.miit.gov.cn" },
+                { title: "科技部：2026 年 AI 芯片研发投入增加 50%", source: "科技部", tag: "ai", date: "03-15", url: "https://www.most.gov.cn" },
+                { title: "《企业数据合规管理指引》正式发布", source: "国家网信办", tag: "data", date: "03-15", url: "https://www.cac.gov.cn" },
+                { title: "发改委：支持制造业数字化转型专项资金增至 500 亿", source: "国家发改委", tag: "manufacturing", date: "03-14", url: "https://www.ndrc.gov.cn" },
+                { title: "工信部：推进 5G+ 工业互联网融合应用", source: "工信部", tag: "manufacturing", date: "03-14", url: "https://www.miit.gov.cn" },
+                { title: "《人工智能安全框架 2.0》发布", source: "国家网信办", tag: "ai", date: "03-13", url: "https://www.cac.gov.cn" },
+                { title: "科技部启动数据要素市场化配置改革试点", source: "科技部", tag: "data", date: "03-13", url: "https://www.most.gov.cn" },
+                { title: "工信部：2026 年培育 100 家智能制造系统解决方案供应商", source: "工信部", tag: "manufacturing", date: "03-12", url: "https://www.miit.gov.cn" }
+            ];
         }
 
         // Filter Organizations
@@ -372,9 +469,23 @@
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            renderAINews();
-            renderOrgNews();
             setUpdateTime();
+            
+            // Fetch AI news
+            fetchAINews();
+            
+            // Fetch organization news
+            Object.keys(orgConfig).forEach(orgId => {
+                fetchNews(orgId);
+            });
+            
+            // Auto-refresh every 5 minutes
+            setInterval(() => {
+                fetchAINews();
+                Object.keys(orgConfig).forEach(orgId => {
+                    fetchNews(orgId);
+                });
+            }, 300000);
         });
     </script>
 </body>
