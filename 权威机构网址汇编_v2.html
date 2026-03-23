@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>软件与信息技术服务权威机构网址汇编</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;line-height:1.6;color:#333;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px}
+        .container{max-width:1400px;margin:0 auto;background:white;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.3);overflow:hidden}
+        header{background:linear-gradient(135deg,#1e3a8a 0%,#3b82f6 100%);color:white;padding:40px;text-align:center}
+        header h1{font-size:2.5em;margin-bottom:10px}
+        header p{font-size:1.2em;opacity:0.9}
+        .meta{background:#f8fafc;padding:20px 40px;border-bottom:3px solid #e2e8f0;display:flex;justify-content:space-around;flex-wrap:wrap;gap:15px}
+        .meta-item{text-align:center}
+        .meta-item strong{display:block;font-size:2em;color:#3b82f6}
+        .meta-item span{color:#64748b;font-size:0.9em}
+        .search-box{padding:30px 40px;background:#f1f5f9}
+        .search-box input{width:100%;padding:15px 20px;font-size:1.1em;border:2px solid #e2e8f0;border-radius:10px;outline:none;transition:border-color 0.3s}
+        .search-box input:focus{border-color:#3b82f6}
+        .category{margin:30px 40px}
+        .category h2{background:linear-gradient(135deg,#1e3a8a 0%,#3b82f6 100%);color:white;padding:15px 25px;border-radius:10px;margin-bottom:20px;font-size:1.4em}
+        .org-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:20px}
+        .org-card{background:white;border:2px solid #e2e8f0;border-radius:12px;padding:20px;transition:all 0.3s}
+        .org-card:hover{border-color:#3b82f6;transform:translateY(-5px);box-shadow:0 10px 30px rgba(59,130,246,0.2)}
+        .org-card h3{color:#1e3a8a;margin-bottom:10px;font-size:1.2em;display:flex;align-items:center;gap:8px}
+        .org-card h3::before{content:"🏛️"}
+        .org-card p{color:#64748b;font-size:0.9em;margin-bottom:15px}
+        .org-card .url{display:inline-block;background:linear-gradient(135deg,#3b82f6 0%,#1e40af 100%);color:white;padding:8px 16px;border-radius:6px;text-decoration:none;font-weight:500;transition:opacity 0.3s}
+        .org-card .url:hover{opacity:0.9}
+        .org-card .tags{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
+        .tag{background:#dbeafe;color:#1e40af;padding:4px 10px;border-radius:4px;font-size:0.8em}
+        .latest-news{margin-top:20px;padding-top:15px;border-top:1px solid #e2e8f0}
+        .latest-news h4{color:#1e3a8a;font-size:1em;margin-bottom:10px;display:flex;align-items:center;gap:5px}
+        .latest-news h4::before{content:"📰"}
+        .latest-news ul{list-style:none;max-height:400px;overflow-y:auto}
+        .latest-news li{margin-bottom:6px;padding:5px;border-radius:4px;transition:background 0.2s}
+        .latest-news li:hover{background:#f1f5f9}
+        .latest-news li a{color:#3b82f6;text-decoration:none;font-size:0.85em;display:flex;align-items:flex-start;gap:5px}
+        .latest-news li a:hover{text-decoration:underline}
+        .latest-news .news-date{font-size:0.7em;color:#94a3b8;white-space:nowrap;margin-left:auto}
+        footer{background:#1e293b;color:white;text-align:center;padding:30px;margin-top:40px}
+        footer p{opacity:0.8}
+        @media(max-width:768px){body{padding:10px}.container{border-radius:15px}header{padding:25px 20px}header h1{font-size:1.6em}.meta{padding:15px;flex-direction:column}.meta-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #e2e8f0}.meta-item:last-child{border-bottom:none}.search-box{padding:20px}.org-grid{grid-template-columns:1fr}.category{margin:20px}.latest-news ul{max-height:300px}}
+        @media(min-width:769px)and (max-width:1024px){.org-grid{grid-template-columns:repeat(2,1fr)}}
+    </style>
+    <script>
+const LATEST_NEWS_DATA = {};
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📋 软件与信息技术服务权威机构网址汇编</h1>
+            <p>Software & Information Technology Service Authorities Directory</p>
+        </header>
+        <div class="meta">
+            <div class="meta-item"><strong id="orgCount">23</strong><span>权威机构</span></div>
+            <div class="meta-item"><strong>460</strong><span>政策文件</span></div>
+            <div class="meta-item"><strong>8</strong><span>机构类别</span></div>
+            <div class="meta-item"><strong id="updateTime">2026</strong><span>更新日期</span></div>
+        </div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 搜索机构名称、职能或政策..." onkeyup="filterOrgs()">
+        </div>
+
+        <!-- 国务院组成部门 -->
+        <div class="category" id="cat-state">
+            <h2>国务院组成部门及直属机构 (15 个)</h2>
+            <div class="org-grid" id="orgs-state"></div>
+        </div>
+
+        <!-- 其他重要机构 -->
+        <div class="category" id="cat-other">
+            <h2>其他重要机构 (8 个)</h2>
+            <div class="org-grid" id="orgs-other"></div>
+        </div>
+
+        <footer>
+            <p>© 2026 软件与信息技术服务权威机构网址汇编 | 最后更新：<span id="footerDate"></span> | 数据由 GitHub Actions 定时更新</p>
+        </footer>
+    </div>
+    <script>
+        const ORG_INFO = {
+            miit:{name:'工业和信息化部',desc:'软件业管理、信息技术服务规划、产业政策制定',tags:['软件管理','产业政策']},
+            ndrc:{name:'国家发展和改革委员会',desc:'数字经济政策、产业发展规划、重大项目审批',tags:['数字经济','产业规划']},
+            most:{name:'科学技术部',desc:'科技计划管理、软件技术研发支持、创新基金',tags:['科技计划','研发支持']},
+            cac:{name:'国家互联网信息办公室',desc:'网络安全管理、数据安全监管、内容治理',tags:['网络安全','数据监管']},
+            samr:{name:'国家市场监督管理总局',desc:'软件产品质量监督、标准认证、反垄断',tags:['质量监督','标准认证']},
+            moe:{name:'教育部',desc:'教育信息化、数字教育、人才培养',tags:['教育信息化','人才培养']},
+            mof:{name:'财政部',desc:'财政支持、税收政策、资金管理',tags:['财政政策','税收']},
+            mohrss:{name:'人力资源和社会保障部',desc:'人才政策、职业技能、就业促进',tags:['人才政策','职业技能']},
+            mnr:{name:'自然资源部',desc:'地理信息、资源数据、信息化',tags:['地理信息','资源数据']},
+            mee:{name:'生态环境部',desc:'环境监测、生态信息化、数据管理',tags:['环境监测','生态信息化']},
+            mohurd:{name:'住房和城乡建设部',desc:'智慧城市、建筑信息化、城镇化',tags:['智慧城市','建筑信息化']},
+            mot:{name:'交通运输部',desc:'智慧交通、交通信息化、物流数据',tags:['智慧交通','交通信息化']},
+            mwr:{name:'水利部',desc:'智慧水利、水文监测、水资源管理',tags:['智慧水利','水文监测']},
+            moa:{name:'农业农村部',desc:'智慧农业、农村信息化、数字乡村',tags:['智慧农业','数字乡村']},
+            mofcom:{name:'商务部',desc:'电子商务、数字贸易、平台经济',tags:['电子商务','数字贸易']},
+            pbc:{name:'中国人民银行',desc:'数字货币、金融科技、支付系统',tags:['数字货币','金融科技']},
+            audit:{name:'国家审计署',desc:'审计信息化、数据审计、智能审计',tags:['审计信息化','数据审计']},
+            stats:{name:'国家统计局',desc:'统计数据、经济数据、数据发布',tags:['统计数据','经济数据']},
+            cfda:{name:'国家药品监督管理局',desc:'智慧监管、药品信息化、数据管理',tags:['智慧监管','药品信息化']},
+            cnca:{name:'国家认证认可监督管理委员会',desc:'认证认可、标准制定、质量认证',tags:['认证认可','标准制定']},
+            sac:{name:'国家标准化管理委员会',desc:'国家标准、标准体系、标准化',tags:['国家标准','标准体系']},
+            csrc:{name:'中国证券监督管理委员会',desc:'金融监管、证券信息化、数据管理',tags:['金融监管','证券信息化']},
+            cbirc:{name:'国家金融监督管理总局',desc:'金融监管、银行信息化、保险科技',tags:['金融监管','银行信息化']}
+        };
+
+        const STATE_ORGS = ['miit','ndrc','most','cac','samr','moe','mof','mohrss','mnr','mee','mohurd','mot','mwr','moa','mofcom'];
+        const OTHER_ORGS = ['pbc','audit','stats','cfda','cnca','sac','csrc','cbirc'];
+
+        function renderOrgs() {
+            const stateContainer = document.getElementById('orgs-state');
+            const otherContainer = document.getElementById('orgs-other');
+            
+            STATE_ORGS.forEach(orgId => {
+                stateContainer.innerHTML += createOrgCard(orgId);
+            });
+            
+            OTHER_ORGS.forEach(orgId => {
+                otherContainer.innerHTML += createOrgCard(orgId);
+            });
+            
+            document.getElementById('orgCount').textContent = Object.keys(ORG_INFO).length;
+        }
+
+        function createOrgCard(orgId) {
+            const info = ORG_INFO[orgId];
+            const newsList = LATEST_NEWS_DATA[orgId] || [];
+            
+            return `
+                <div class="org-card" data-name="${info.name} ${info.desc}">
+                    <h3>${info.name}</h3>
+                    <p>${info.desc}</p>
+                    <a href="${info.name.includes('委员会')||info.name.includes('总局')?'https://www':'https://www'}.${orgId.length===3?'gov':'gov'}.cn" target="_blank" class="url">🌐 官方网站</a>
+                    <div class="tags">${info.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+                    <div class="latest-news">
+                        <h4>最新动态 (${newsList.length}条)</h4>
+                        <ul>
+                            ${newsList.length>0?newsList.map(news=>`
+                                <li>
+                                    <a href="${news.url}" target="_blank">
+                                        <span>${news.title}</span>
+                                        <span class="news-date">${news.date}</span>
+                                    </a>
+                                </li>
+                            `).join(''):'<li style="color:#94a3b8;padding:10px;">暂无数据</li>'}
+                        </ul>
+                    </div>
+                </div>
+            `;
+        }
+
+        function filterOrgs() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toUpperCase();
+            document.querySelectorAll('.org-card').forEach(card => {
+                card.style.display = card.getAttribute('data-name').toUpperCase().indexOf(filter) > -1 ? '' : 'none';
+            });
+        }
+
+        function setUpdateTime() {
+            const now = new Date();
+            document.getElementById('updateTime').textContent = now.toISOString().split('T')[0];
+            document.getElementById('footerDate').textContent = now.toLocaleDateString('zh-CN',{year:'numeric',month:'long',day:'numeric'});
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderOrgs();
+            setUpdateTime();
+        });
+    </script>
+</body>
+</html>
