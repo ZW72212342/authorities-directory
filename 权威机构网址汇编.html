@@ -3,131 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="软件与信息技术服务权威机构网址汇编 - 实时获取 AI、数据治理、智能制造领域最新资讯">
     <title>软件与信息技术服务权威机构网址汇编</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
-        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
-        
-        /* Header */
-        header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; padding: 40px; text-align: center; }
-        header h1 { font-size: 2.5em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-        header p { font-size: 1.2em; opacity: 0.9; }
-        
-        /* Meta Stats */
-        .meta { background: #f8fafc; padding: 20px 40px; border-bottom: 3px solid #e2e8f0; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 15px; }
-        .meta-item { text-align: center; }
-        .meta-item strong { display: block; font-size: 2em; color: #3b82f6; }
-        .meta-item span { color: #64748b; font-size: 0.9em; }
-        
-        /* Search Box */
-        .search-box { padding: 30px 40px; background: #f1f5f9; }
-        .search-box input { width: 100%; padding: 15px 20px; font-size: 1.1em; border: 2px solid #e2e8f0; border-radius: 10px; outline: none; transition: border-color 0.3s; }
-        .search-box input:focus { border-color: #3b82f6; }
-        
-        /* AI News Section */
-        .ai-news-section { margin: 30px 40px; padding: 30px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-radius: 15px; color: white; }
-        .ai-news-section h2 { font-size: 1.6em; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-        .ai-news-section h2::before { content: "🤖"; }
-        .ai-news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
-        .ai-news-item { background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6; transition: all 0.3s; }
-        .ai-news-item:hover { background: rgba(255,255,255,0.15); transform: translateX(5px); }
-        .ai-news-item a { color: #60a5fa; text-decoration: none; font-weight: 500; display: block; margin-bottom: 8px; }
-        .ai-news-item a:hover { text-decoration: underline; }
-        .ai-news-item .source { font-size: 0.85em; color: #94a3b8; }
-        .ai-news-item .date { font-size: 0.8em; color: #64748b; margin-top: 5px; }
-        .ai-news-item .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; margin-right: 5px; }
-        .tag-ai { background: rgba(59,130,246,0.3); color: #60a5fa; }
-        .tag-data { background: rgba(16,185,129,0.3); color: #34d399; }
-        .tag-manufacturing { background: rgba(245,158,11,0.3); color: #fbbf24; }
-        
-        /* Category Section */
-        .category { margin: 30px 40px; }
-        .category h2 { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; padding: 15px 25px; border-radius: 10px; margin-bottom: 20px; font-size: 1.4em; display: flex; align-items: center; gap: 10px; }
-        .category h2::before { content: "📋"; }
-        
-        /* Org Grid */
-        .org-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px; }
-        .org-card { background: white; border: 2px solid #e2e8f0; border-radius: 12px; padding: 20px; transition: all 0.3s; cursor: pointer; }
-        .org-card:hover { border-color: #3b82f6; transform: translateY(-5px); box-shadow: 0 10px 30px rgba(59,130,246,0.2); }
-        .org-card h3 { color: #1e3a8a; margin-bottom: 10px; font-size: 1.2em; display: flex; align-items: center; gap: 8px; }
-        .org-card h3::before { content: "🏛️"; }
-        .org-card p { color: #64748b; font-size: 0.9em; margin-bottom: 15px; line-height: 1.5; }
-        .org-card .url { display: inline-block; background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: 500; transition: opacity 0.3s; }
-        .org-card .url:hover { opacity: 0.9; }
-        .org-card .tags { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
-        .tag { background: #dbeafe; color: #1e40af; padding: 4px 10px; border-radius: 4px; font-size: 0.8em; }
-        
-        /* Latest News Section */
-        .latest-news { margin-top: 20px; padding-top: 15px; border-top: 1px solid #e2e8f0; }
-        .latest-news h4 { color: #1e3a8a; font-size: 1em; margin-bottom: 10px; display: flex; align-items: center; gap: 5px; }
-        .latest-news h4::before { content: "📰"; }
-        .latest-news ul { list-style: none; }
-        .latest-news li { margin-bottom: 8px; }
-        .latest-news li a { color: #3b82f6; text-decoration: none; font-size: 0.9em; display: flex; align-items: flex-start; gap: 5px; }
-        .latest-news li a:hover { text-decoration: underline; }
-        .latest-news li a::before { content: "▸"; color: #3b82f6; }
-        .latest-news .news-date { font-size: 0.75em; color: #94a3b8; white-space: nowrap; margin-left: auto; }
-        .latest-news .loading { color: #94a3b8; font-size: 0.85em; font-style: italic; }
-        
-        /* Footer */
-        footer { background: #1e293b; color: white; text-align: center; padding: 30px; margin-top: 40px; }
-        footer p { opacity: 0.8; }
-        
-        /* Mobile Responsive - ENHANCED */
-        @media (max-width: 768px) {
-            body { padding: 10px; }
-            .container { border-radius: 15px; }
-            header { padding: 25px 20px; }
-            header h1 { font-size: 1.6em; }
-            header p { font-size: 1em; }
-            .meta { padding: 15px; flex-direction: column; }
-            .meta-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #e2e8f0; }
-            .meta-item:last-child { border-bottom: none; }
-            .meta-item strong { font-size: 1.5em; }
-            .search-box { padding: 20px; }
-            .search-box input { font-size: 1em; padding: 12px 15px; }
-            .ai-news-section { margin: 20px; padding: 20px; }
-            .ai-news-section h2 { font-size: 1.3em; }
-            .ai-news-grid { grid-template-columns: 1fr; }
-            .category { margin: 20px; }
-            .category h2 { font-size: 1.2em; padding: 12px 18px; }
-            .org-grid { grid-template-columns: 1fr; }
-            .org-card { padding: 15px; }
-            .org-card h3 { font-size: 1.1em; }
-            .latest-news li a { font-size: 0.85em; flex-direction: column; gap: 3px; }
-            .latest-news .news-date { margin-left: 0; }
-        }
-        
-        @media (max-width: 480px) {
-            header h1 { font-size: 1.4em; }
-            .meta-item { flex-direction: column; align-items: flex-start; gap: 5px; }
-            .ai-news-section { padding: 15px; }
-            .org-card .url { display: block; text-align: center; margin-top: 10px; }
-        }
-        
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .org-grid { grid-template-columns: repeat(2, 1fr); }
-            .ai-news-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        
-        .loading { text-align: center; padding: 20px; color: #64748b; }
-        .loading::after { content: " "; animation: dots 1.5s steps(4, end) infinite; }
-        @keyframes dots { 0%, 20% { content: " "; } 40% { content: "."; } 60% { content: ".."; } 80%, 100% { content: "..."; } }
-        
-        .error-msg { color: #f56565; font-size: 0.85em; padding: 10px; background: rgba(245,101,101,0.1); border-radius: 5px; }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;line-height:1.6;color:#333;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px}
+        .container{max-width:1400px;margin:0 auto;background:white;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.3);overflow:hidden}
+        header{background:linear-gradient(135deg,#1e3a8a 0%,#3b82f6 100%);color:white;padding:40px;text-align:center}
+        header h1{font-size:2.5em;margin-bottom:10px}
+        header p{font-size:1.2em;opacity:0.9}
+        .meta{background:#f8fafc;padding:20px 40px;border-bottom:3px solid #e2e8f0;display:flex;justify-content:space-around;flex-wrap:wrap;gap:15px}
+        .meta-item{text-align:center}
+        .meta-item strong{display:block;font-size:2em;color:#3b82f6}
+        .meta-item span{color:#64748b;font-size:0.9em}
+        .search-box{padding:30px 40px;background:#f1f5f9}
+        .search-box input{width:100%;padding:15px 20px;font-size:1.1em;border:2px solid #e2e8f0;border-radius:10px;outline:none;transition:border-color 0.3s}
+        .search-box input:focus{border-color:#3b82f6}
+        .category{margin:30px 40px}
+        .category h2{background:linear-gradient(135deg,#1e3a8a 0%,#3b82f6 100%);color:white;padding:15px 25px;border-radius:10px;margin-bottom:20px;font-size:1.4em}
+        .org-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:20px}
+        .org-card{background:white;border:2px solid #e2e8f0;border-radius:12px;padding:20px;transition:all 0.3s}
+        .org-card:hover{border-color:#3b82f6;transform:translateY(-5px);box-shadow:0 10px 30px rgba(59,130,246,0.2)}
+        .org-card h3{color:#1e3a8a;margin-bottom:10px;font-size:1.2em;display:flex;align-items:center;gap:8px}
+        .org-card h3::before{content:"🏛️"}
+        .org-card p{color:#64748b;font-size:0.9em;margin-bottom:15px}
+        .org-card .url{display:inline-block;background:linear-gradient(135deg,#3b82f6 0%,#1e40af 100%);color:white;padding:8px 16px;border-radius:6px;text-decoration:none;font-weight:500;transition:opacity 0.3s}
+        .org-card .url:hover{opacity:0.9}
+        .org-card .tags{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
+        .tag{background:#dbeafe;color:#1e40af;padding:4px 10px;border-radius:4px;font-size:0.8em}
+        .latest-news{margin-top:20px;padding-top:15px;border-top:1px solid #e2e8f0}
+        .latest-news h4{color:#1e3a8a;font-size:1em;margin-bottom:10px;display:flex;align-items:center;gap:5px}
+        .latest-news h4::before{content:"📰"}
+        .latest-news ul{list-style:none;max-height:400px;overflow-y:auto}
+        .latest-news li{margin-bottom:6px;padding:5px;border-radius:4px;transition:background 0.2s}
+        .latest-news li:hover{background:#f1f5f9}
+        .latest-news li a{color:#3b82f6;text-decoration:none;font-size:0.85em;display:flex;align-items:flex-start;gap:5px}
+        .latest-news li a:hover{text-decoration:underline}
+        .latest-news .news-date{font-size:0.7em;color:#94a3b8;white-space:nowrap;margin-left:auto}
+        footer{background:#1e293b;color:white;text-align:center;padding:30px;margin-top:40px}
+        footer p{opacity:0.8}
+        @media(max-width:768px){body{padding:10px}.container{border-radius:15px}header{padding:25px 20px}header h1{font-size:1.6em}.meta{padding:15px;flex-direction:column}.meta-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #e2e8f0}.meta-item:last-child{border-bottom:none}.search-box{padding:20px}.org-grid{grid-template-columns:1fr}.category{margin:20px}.latest-news ul{max-height:300px}}
+        @media(min-width:769px)and (max-width:1024px){.org-grid{grid-template-columns:repeat(2,1fr)}}
     </style>
     <script>
-const LATEST_NEWS_DATA = {"miit": [{"title": "习近平向拉美和加勒比国家共同体第十届峰会致贺电", "url": "http://www.miit.gov.cn/xwfb/szyw/art/2026/art_0c38f901665f46bf9299de5a96fb6d1b.html \"习近平向拉美和加勒比国家共同体第十届峰会致贺电\"", "date": "03-22"}, {"title": "习近平会见土库曼斯坦民族领袖、人民委员会主席别尔德穆哈梅多夫", "url": "http://www.miit.gov.cn/xwfb/szyw/art/2026/art_bbc2891e7ef44eaca47dd9670b078182.html \"习近平会见土库曼斯坦民族领袖、人民委员会主席别尔德穆哈梅多夫\"", "date": "03-18"}, {"title": "习近平：推动海洋经济高质量发展", "url": "http://www.miit.gov.cn/xwfb/szyw/art/2026/art_87f72a51a9874ca6b5c23c4f48bd2c23.html \"习近平：推动海洋经济高质量发展\"", "date": "03-15"}, {"title": "《求是》杂志发表习近平总书记重要文章《推动海洋经济高质量发展》", "url": "http://www.miit.gov.cn/xwfb/szyw/art/2026/art_a02968ba50f54bbb8031eea0dcde597f.html \"《求是》杂志发表习近平总书记重要文章《推动海洋经济高质量发展》\"", "date": "03-15"}, {"title": "国务院第十一次全体会议深入学习贯彻习近平总书记在全国两会期间的重要讲话精神 对落实国务院2...", "url": "http://www.miit.gov.cn/xwfb/szyw/art/2026/art_2556c1176bcc4f90a24e6064f82daa5a.html \"国务院第十一次全体会议深入学习贯彻习近平总书记在全国两会期间的重要讲话精神 对落实国务院2026年重点工作进行部署\"", "date": "03-16"}, {"title": "政府工作报告", "url": "http://www.miit.gov.cn/xwfb/szyw/art/2026/art_a0f73af7d13b44b080ae9b71903939af.html \"政府工作报告\"", "date": "03-14"}, {"title": "国务院常务会议讨论通过《国务院2026年重点工作分工方案》等", "url": "http://www.miit.gov.cn/xwfb/szyw/art/2026/art_4e416e58b3ee407d82a7e018d5ea38d6.html \"国务院常务会议讨论通过《国务院2026年重点工作分工方案》等\"", "date": "03-13"}, {"title": "十四届全国人大四次会议在京闭幕", "url": "http://www.miit.gov.cn/xwfb/szyw/art/2026/art_0beb2b7605f9401ca9c6ae75d41cfc2c.html \"十四届全国人大四次会议在京闭幕\"", "date": "03-12"}, {"title": "习近平复信法国国际学校中文班师生", "url": "http://www.miit.gov.cn/xwfb/szyw/art/2026/art_d80bf6d720184e5caabf76fbb834c64a.html \"习近平复信法国国际学校中文班师生\"", "date": "03-12"}, {"title": "中国人民政治协商会议全国委员会常务委员会工作报告", "url": "http://www.miit.gov.cn/xwfb/szyw/art/2026/art_172da4e0c1b3429ca8c47a24e91e1df1.html \"中国人民政治协商会议全国委员会常务委员会工作报告\"", "date": "03-11"}], "ndrc": [{"title": "![Image 1", "url": "https://www.ndrc.gov.cn/images/logonew.png", "date": "03-23"}, {"title": "郑栅洁主任会见大众汽车集团管理董事会主席奥博穆", "url": "http://www.ndrc.gov.cn/xwdt/xwfb/202603/t20260323_1404297.html \"郑栅洁主任会见大众汽车集团管理董事会主席奥博穆\"", "date": "03-23"}, {"title": "郑栅洁主任主持召开民营企业座谈会 围绕贯彻全国两会精神推动服务业扩能提质 实现“十五五”...", "url": "http://www.ndrc.gov.cn/xwdt/xwfb/202603/t20260320_1404280.html \"郑栅洁主任主持召开民营企业座谈会 围绕贯彻全国两会精神推动服务业扩能提质 实现“十五五”良好开局听取意见建议\"", "date": "03-23"}, {"title": "国家发展改革委规划司负责同志就国家发展规划法答记者问", "url": "http://www.ndrc.gov.cn/xwdt/xwfb/202603/t20260319_1404242.html \"国家发展改革委规划司负责同志就国家发展规划法答记者问\"", "date": "03-23"}, {"title": "全面深入贯彻国家发展规划法 进一步彰显中国特色社会主义制度重要政治优势", "url": "http://www.ndrc.gov.cn/xwdt/xwfb/202603/t20260319_1404238.html \"全面深入贯彻国家发展规划法 进一步彰显中国特色社会主义制度重要政治优势\"", "date": "03-23"}, {"title": "2026年3月9日国内成品油价格按机制调整", "url": "http://www.ndrc.gov.cn/xwdt/xwfb/202603/t20260309_1404075.html \"2026年3月9日国内成品油价格按机制调整\"", "date": "03-23"}, {"title": "国家发展和改革委员会直属单位2026年度第二批公开招聘公告", "url": "http://www.ndrc.gov.cn/xwdt/tzgg/202603/t20260317_1404182.html \"国家发展和改革委员会直属单位2026年度第二批公开招聘公告\"", "date": "03-23"}, {"title": "关于在全社会推进儿童友好建设的意见", "url": "http://www.ndrc.gov.cn/xwdt/tzgg/202603/t20260317_1404184.html \"关于在全社会推进儿童友好建设的意见\"", "date": "03-23"}, {"title": "关于加强投资项目在线审批监管平台和工程建设项目审批管理系统数据共享的通知", "url": "http://www.ndrc.gov.cn/xwdt/tzgg/202602/t20260213_1403764.html \"关于加强投资项目在线审批监管平台和工程建设项目审批管理系统数据共享的通知\"", "date": "03-23"}, {"title": "关于推动低空保险高质量发展的实施意见", "url": "http://www.ndrc.gov.cn/xwdt/tzgg/202602/t20260212_1403718.html \"关于推动低空保险高质量发展的实施意见\"", "date": "03-23"}], "most": [{"title": "快速进入科技部门户网站首页", "url": "https://www.most.gov.cn/", "date": "03-23"}], "cac": [{"title": "网信办开展\"清朗\"系列专项行动", "url": "https://www.cac.gov.cn", "date": "03-22"}, {"title": "《个人信息保护合规指南》发布", "url": "https://www.cac.gov.cn", "date": "03-21"}, {"title": "网信办部署网络安全审查工作", "url": "https://www.cac.gov.cn", "date": "03-20"}, {"title": "《网络信息内容生态治理规定》修订", "url": "https://www.cac.gov.cn", "date": "03-19"}, {"title": "网信办推进网络法治建设", "url": "https://www.cac.gov.cn", "date": "03-18"}], "samr": [{"title": "市场监管总局加强平台经济反垄断监管", "url": "https://www.samr.gov.cn", "date": "03-22"}, {"title": "《认证认可条例》修订草案征求意见", "url": "https://www.samr.gov.cn", "date": "03-21"}, {"title": "市场监管总局部署 2026 年质量标准工作", "url": "https://www.samr.gov.cn", "date": "03-20"}, {"title": "《国家标准管理办法》发布", "url": "https://www.samr.gov.cn", "date": "03-19"}, {"title": "市场监管总局推进质量基础设施建设", "url": "https://www.samr.gov.cn", "date": "03-18"}]};
-
-    </script>
-    <script>
-const LATEST_NEWS_DATA = {"ndrc": [{"title": "发改委：《关于构建数据基础制度更好发挥数据要素作用的意见》", "url": "https://www.ndrc.gov.cn", "date": "03-21"}, {"title": "《数字经济促进法》草案征求意见", "url": "https://www.ndrc.gov.cn", "date": "03-19"}, {"title": "发改委批准建设国家人工智能创新应用先导区", "url": "https://www.ndrc.gov.cn", "date": "03-17"}, {"title": "《平台经济健康发展指导意见》发布", "url": "https://www.ndrc.gov.cn", "date": "03-14"}, {"title": "发改委：支持制造业数字化转型", "url": "https://www.ndrc.gov.cn", "date": "03-11"}], "cac": [{"title": "网信办：《生成式人工智能服务管理暂行办法》", "url": "https://www.cac.gov.cn", "date": "03-19"}, {"title": "《数据安全法》实施情况检查", "url": "https://www.cac.gov.cn", "date": "03-17"}, {"title": "网信办开展算法推荐专项治理", "url": "https://www.cac.gov.cn", "date": "03-15"}, {"title": "《网络安全审查办法》修订发布", "url": "https://www.cac.gov.cn", "date": "03-12"}, {"title": "网信办：加强个人信息保护", "url": "https://www.cac.gov.cn", "date": "03-09"}], "miit": [{"title": "工信部发布《软件和信息技术服务业\"十四五\"发展规划》", "url": "https://www.miit.gov.cn", "date": "03-22"}, {"title": "《工业数据分类分级指南 (试行)》政策解读", "url": "https://www.miit.gov.cn", "date": "03-20"}, {"title": "工信部：推进人工智能产业创新发展", "url": "https://www.miit.gov.cn", "date": "03-18"}, {"title": "《智能制造标准体系建设指南》征求意见", "url": "https://www.miit.gov.cn", "date": "03-15"}, {"title": "工信部部署信息系统运维安全保障工作", "url": "https://www.miit.gov.cn", "date": "03-12"}], "most": [{"title": "科技部启动\"人工智能\"重点专项 2026 年度项目申报", "url": "https://www.most.gov.cn", "date": "03-20"}, {"title": "《国家新一代人工智能开放创新平台建设工作指引》", "url": "https://www.most.gov.cn", "date": "03-18"}, {"title": "科技部：加强软件技术研发支持", "url": "https://www.most.gov.cn", "date": "03-16"}, {"title": "《数据治理科技支撑方案》印发", "url": "https://www.most.gov.cn", "date": "03-13"}, {"title": "科技部部署信息技术创新应用研究", "url": "https://www.most.gov.cn", "date": "03-10"}]};
-    </script>
-    <!-- Last updated: 2026-03-23 06:24 -->
-    <script>
-const LATEST_NEWS_DATA = {"miit": [{"title": "工业和信息化部发布2026年重点工作任务", "url": "http://www.miit.gov.cn", "date": "03-22"}, {"title": "工业和信息化部推进数字化转型工作", "url": "http://www.miit.gov.cn", "date": "03-20"}, {"title": "工业和信息化部加强数据治理能力建设", "url": "http://www.miit.gov.cn", "date": "03-18"}, {"title": "工业和信息化部部署人工智能应用试点", "url": "http://www.miit.gov.cn", "date": "03-15"}, {"title": "工业和信息化部推动信息技术创新发展", "url": "http://www.miit.gov.cn", "date": "03-12"}, {"title": "工业和信息化部相关政策文件 01号", "url": "http://www.miit.gov.cn", "date": "03-10"}, {"title": "工业和信息化部相关政策文件 02号", "url": "http://www.miit.gov.cn", "date": "03-08"}, {"title": "工业和信息化部相关政策文件 03号", "url": "http://www.miit.gov.cn", "date": "03-06"}, {"title": "工业和信息化部相关政策文件 04号", "url": "http://www.miit.gov.cn", "date": "03-04"}, {"title": "工业和信息化部相关政策文件 05号", "url": "http://www.miit.gov.cn", "date": "03-02"}, {"title": "工业和信息化部相关政策文件 06号", "url": "http://www.miit.gov.cn", "date": "02-10"}, {"title": "工业和信息化部相关政策文件 07号", "url": "http://www.miit.gov.cn", "date": "02-08"}, {"title": "工业和信息化部相关政策文件 08号", "url": "http://www.miit.gov.cn", "date": "02-06"}, {"title": "工业和信息化部相关政策文件 09号", "url": "http://www.miit.gov.cn", "date": "02-04"}, {"title": "工业和信息化部相关政策文件 10号", "url": "http://www.miit.gov.cn", "date": "02-02"}, {"title": "工业和信息化部相关政策文件 11号", "url": "http://www.miit.gov.cn", "date": "01-10"}, {"title": "工业和信息化部相关政策文件 12号", "url": "http://www.miit.gov.cn", "date": "01-08"}, {"title": "工业和信息化部相关政策文件 13号", "url": "http://www.miit.gov.cn", "date": "01-06"}, {"title": "工业和信息化部相关政策文件 14号", "url": "http://www.miit.gov.cn", "date": "01-04"}, {"title": "工业和信息化部相关政策文件 15号", "url": "http://www.miit.gov.cn", "date": "01-02"}], "ndrc": [{"title": "关于加快招标投标领域人工智能推广应用的实施意见(发改法规〔2026〕195号)", "url": "http://www.ndrc.gov.cn/xxgk/zcfb/tz/202602/t20260210_1403680.html", "date": "03-23"}], "most": [{"title": "科学技术部发布2026年重点工作任务", "url": "http://www.most.gov.cn", "date": "03-22"}, {"title": "科学技术部推进数字化转型工作", "url": "http://www.most.gov.cn", "date": "03-20"}, {"title": "科学技术部加强数据治理能力建设", "url": "http://www.most.gov.cn", "date": "03-18"}, {"title": "科学技术部部署人工智能应用试点", "url": "http://www.most.gov.cn", "date": "03-15"}, {"title": "科学技术部推动信息技术创新发展", "url": "http://www.most.gov.cn", "date": "03-12"}, {"title": "科学技术部相关政策文件 01号", "url": "http://www.most.gov.cn", "date": "03-10"}, {"title": "科学技术部相关政策文件 02号", "url": "http://www.most.gov.cn", "date": "03-08"}, {"title": "科学技术部相关政策文件 03号", "url": "http://www.most.gov.cn", "date": "03-06"}, {"title": "科学技术部相关政策文件 04号", "url": "http://www.most.gov.cn", "date": "03-04"}, {"title": "科学技术部相关政策文件 05号", "url": "http://www.most.gov.cn", "date": "03-02"}, {"title": "科学技术部相关政策文件 06号", "url": "http://www.most.gov.cn", "date": "02-10"}, {"title": "科学技术部相关政策文件 07号", "url": "http://www.most.gov.cn", "date": "02-08"}, {"title": "科学技术部相关政策文件 08号", "url": "http://www.most.gov.cn", "date": "02-06"}, {"title": "科学技术部相关政策文件 09号", "url": "http://www.most.gov.cn", "date": "02-04"}, {"title": "科学技术部相关政策文件 10号", "url": "http://www.most.gov.cn", "date": "02-02"}, {"title": "科学技术部相关政策文件 11号", "url": "http://www.most.gov.cn", "date": "01-10"}, {"title": "科学技术部相关政策文件 12号", "url": "http://www.most.gov.cn", "date": "01-08"}, {"title": "科学技术部相关政策文件 13号", "url": "http://www.most.gov.cn", "date": "01-06"}, {"title": "科学技术部相关政策文件 14号", "url": "http://www.most.gov.cn", "date": "01-04"}, {"title": "科学技术部相关政策文件 15号", "url": "http://www.most.gov.cn", "date": "01-02"}], "cac": [{"title": "关于发布生成式人工智能服务已备案信息的公告（2026年1月至2月）", "url": "https://www.cac.gov.cn/2026-03/17/c_1775482074695536.htm \"关于发布生成式人工智能服务已备案信息的公告（2026年1月至2月）\"", "date": "03-23"}, {"title": "国家互联网信息办公室关于发布第十六批深度合成服务算法备案信息的公告", "url": "https://www.cac.gov.cn/2026-03/12/c_1775050837565188.htm \"国家互联网信息办公室关于发布第十六批深度合成服务算法备案信息的公告\"", "date": "03-23"}], "samr": [{"title": "国家市场监督管理总局发布2026年重点工作任务", "url": "http://www.samr.gov.cn", "date": "03-22"}, {"title": "国家市场监督管理总局推进数字化转型工作", "url": "http://www.samr.gov.cn", "date": "03-20"}, {"title": "国家市场监督管理总局加强数据治理能力建设", "url": "http://www.samr.gov.cn", "date": "03-18"}, {"title": "国家市场监督管理总局部署人工智能应用试点", "url": "http://www.samr.gov.cn", "date": "03-15"}, {"title": "国家市场监督管理总局推动信息技术创新发展", "url": "http://www.samr.gov.cn", "date": "03-12"}, {"title": "国家市场监督管理总局相关政策文件 01号", "url": "http://www.samr.gov.cn", "date": "03-10"}, {"title": "国家市场监督管理总局相关政策文件 02号", "url": "http://www.samr.gov.cn", "date": "03-08"}, {"title": "国家市场监督管理总局相关政策文件 03号", "url": "http://www.samr.gov.cn", "date": "03-06"}, {"title": "国家市场监督管理总局相关政策文件 04号", "url": "http://www.samr.gov.cn", "date": "03-04"}, {"title": "国家市场监督管理总局相关政策文件 05号", "url": "http://www.samr.gov.cn", "date": "03-02"}, {"title": "国家市场监督管理总局相关政策文件 06号", "url": "http://www.samr.gov.cn", "date": "02-10"}, {"title": "国家市场监督管理总局相关政策文件 07号", "url": "http://www.samr.gov.cn", "date": "02-08"}, {"title": "国家市场监督管理总局相关政策文件 08号", "url": "http://www.samr.gov.cn", "date": "02-06"}, {"title": "国家市场监督管理总局相关政策文件 09号", "url": "http://www.samr.gov.cn", "date": "02-04"}, {"title": "国家市场监督管理总局相关政策文件 10号", "url": "http://www.samr.gov.cn", "date": "02-02"}, {"title": "国家市场监督管理总局相关政策文件 11号", "url": "http://www.samr.gov.cn", "date": "01-10"}, {"title": "国家市场监督管理总局相关政策文件 12号", "url": "http://www.samr.gov.cn", "date": "01-08"}, {"title": "国家市场监督管理总局相关政策文件 13号", "url": "http://www.samr.gov.cn", "date": "01-06"}, {"title": "国家市场监督管理总局相关政策文件 14号", "url": "http://www.samr.gov.cn", "date": "01-04"}, {"title": "国家市场监督管理总局相关政策文件 15号", "url": "http://www.samr.gov.cn", "date": "01-02"}], "moe": [{"title": "介绍一年来推进教育数字化进展和世界数字教育大会筹备情况", "url": "http://www.moe.gov.cn/jyb_xwfb/xw_fbh/moe_2606/2023/cfh_0209/ \"介绍一年来推进教育数字化进展和世界数字教育大会筹备情况\"", "date": "03-23"}], "mof": [{"title": "财政部修改《节能减排补助资金管理暂行办法》", "url": "http://jjs.mof.gov.cn/tongzhigonggao/202603/t20260316_3985384.htm \"财政部修改《节能减排补助资金管理暂行办法》\"", "date": "2026-03-16"}], "mohrss": [{"title": "人力资源和社会保障部发布2026年重点工作任务", "url": "http://www.mohrss.gov.cn", "date": "03-22"}, {"title": "人力资源和社会保障部推进数字化转型工作", "url": "http://www.mohrss.gov.cn", "date": "03-20"}, {"title": "人力资源和社会保障部加强数据治理能力建设", "url": "http://www.mohrss.gov.cn", "date": "03-18"}, {"title": "人力资源和社会保障部部署人工智能应用试点", "url": "http://www.mohrss.gov.cn", "date": "03-15"}, {"title": "人力资源和社会保障部推动信息技术创新发展", "url": "http://www.mohrss.gov.cn", "date": "03-12"}, {"title": "人力资源和社会保障部相关政策文件 01号", "url": "http://www.mohrss.gov.cn", "date": "03-10"}, {"title": "人力资源和社会保障部相关政策文件 02号", "url": "http://www.mohrss.gov.cn", "date": "03-08"}, {"title": "人力资源和社会保障部相关政策文件 03号", "url": "http://www.mohrss.gov.cn", "date": "03-06"}, {"title": "人力资源和社会保障部相关政策文件 04号", "url": "http://www.mohrss.gov.cn", "date": "03-04"}, {"title": "人力资源和社会保障部相关政策文件 05号", "url": "http://www.mohrss.gov.cn", "date": "03-02"}, {"title": "人力资源和社会保障部相关政策文件 06号", "url": "http://www.mohrss.gov.cn", "date": "02-10"}, {"title": "人力资源和社会保障部相关政策文件 07号", "url": "http://www.mohrss.gov.cn", "date": "02-08"}, {"title": "人力资源和社会保障部相关政策文件 08号", "url": "http://www.mohrss.gov.cn", "date": "02-06"}, {"title": "人力资源和社会保障部相关政策文件 09号", "url": "http://www.mohrss.gov.cn", "date": "02-04"}, {"title": "人力资源和社会保障部相关政策文件 10号", "url": "http://www.mohrss.gov.cn", "date": "02-02"}, {"title": "人力资源和社会保障部相关政策文件 11号", "url": "http://www.mohrss.gov.cn", "date": "01-10"}, {"title": "人力资源和社会保障部相关政策文件 12号", "url": "http://www.mohrss.gov.cn", "date": "01-08"}, {"title": "人力资源和社会保障部相关政策文件 13号", "url": "http://www.mohrss.gov.cn", "date": "01-06"}, {"title": "人力资源和社会保障部相关政策文件 14号", "url": "http://www.mohrss.gov.cn", "date": "01-04"}, {"title": "人力资源和社会保障部相关政策文件 15号", "url": "http://www.mohrss.gov.cn", "date": "01-02"}], "mnr": [{"title": "自然资源部发布2026年重点工作任务", "url": "http://www.mnr.gov.cn", "date": "03-22"}, {"title": "自然资源部推进数字化转型工作", "url": "http://www.mnr.gov.cn", "date": "03-20"}, {"title": "自然资源部加强数据治理能力建设", "url": "http://www.mnr.gov.cn", "date": "03-18"}, {"title": "自然资源部部署人工智能应用试点", "url": "http://www.mnr.gov.cn", "date": "03-15"}, {"title": "自然资源部推动信息技术创新发展", "url": "http://www.mnr.gov.cn", "date": "03-12"}, {"title": "自然资源部相关政策文件 01号", "url": "http://www.mnr.gov.cn", "date": "03-10"}, {"title": "自然资源部相关政策文件 02号", "url": "http://www.mnr.gov.cn", "date": "03-08"}, {"title": "自然资源部相关政策文件 03号", "url": "http://www.mnr.gov.cn", "date": "03-06"}, {"title": "自然资源部相关政策文件 04号", "url": "http://www.mnr.gov.cn", "date": "03-04"}, {"title": "自然资源部相关政策文件 05号", "url": "http://www.mnr.gov.cn", "date": "03-02"}, {"title": "自然资源部相关政策文件 06号", "url": "http://www.mnr.gov.cn", "date": "02-10"}, {"title": "自然资源部相关政策文件 07号", "url": "http://www.mnr.gov.cn", "date": "02-08"}, {"title": "自然资源部相关政策文件 08号", "url": "http://www.mnr.gov.cn", "date": "02-06"}, {"title": "自然资源部相关政策文件 09号", "url": "http://www.mnr.gov.cn", "date": "02-04"}, {"title": "自然资源部相关政策文件 10号", "url": "http://www.mnr.gov.cn", "date": "02-02"}, {"title": "自然资源部相关政策文件 11号", "url": "http://www.mnr.gov.cn", "date": "01-10"}, {"title": "自然资源部相关政策文件 12号", "url": "http://www.mnr.gov.cn", "date": "01-08"}, {"title": "自然资源部相关政策文件 13号", "url": "http://www.mnr.gov.cn", "date": "01-06"}, {"title": "自然资源部相关政策文件 14号", "url": "http://www.mnr.gov.cn", "date": "01-04"}, {"title": "自然资源部相关政策文件 15号", "url": "http://www.mnr.gov.cn", "date": "01-02"}], "mee": [{"title": "工业和信息化部", "url": "http://www.miit.gov.cn/", "date": "03-23"}, {"title": "中国环境监测总站", "url": "https://www.cnemc.cn/", "date": "03-23"}, {"title": "国家海洋环境监测中心", "url": "https://www.nmemc.org.cn/", "date": "03-23"}], "mohurd": [{"title": "住房和城乡建设部发布2026年重点工作任务", "url": "http://www.mohurd.gov.cn", "date": "03-22"}, {"title": "住房和城乡建设部推进数字化转型工作", "url": "http://www.mohurd.gov.cn", "date": "03-20"}, {"title": "住房和城乡建设部加强数据治理能力建设", "url": "http://www.mohurd.gov.cn", "date": "03-18"}, {"title": "住房和城乡建设部部署人工智能应用试点", "url": "http://www.mohurd.gov.cn", "date": "03-15"}, {"title": "住房和城乡建设部推动信息技术创新发展", "url": "http://www.mohurd.gov.cn", "date": "03-12"}, {"title": "住房和城乡建设部相关政策文件 01号", "url": "http://www.mohurd.gov.cn", "date": "03-10"}, {"title": "住房和城乡建设部相关政策文件 02号", "url": "http://www.mohurd.gov.cn", "date": "03-08"}, {"title": "住房和城乡建设部相关政策文件 03号", "url": "http://www.mohurd.gov.cn", "date": "03-06"}, {"title": "住房和城乡建设部相关政策文件 04号", "url": "http://www.mohurd.gov.cn", "date": "03-04"}, {"title": "住房和城乡建设部相关政策文件 05号", "url": "http://www.mohurd.gov.cn", "date": "03-02"}, {"title": "住房和城乡建设部相关政策文件 06号", "url": "http://www.mohurd.gov.cn", "date": "02-10"}, {"title": "住房和城乡建设部相关政策文件 07号", "url": "http://www.mohurd.gov.cn", "date": "02-08"}, {"title": "住房和城乡建设部相关政策文件 08号", "url": "http://www.mohurd.gov.cn", "date": "02-06"}, {"title": "住房和城乡建设部相关政策文件 09号", "url": "http://www.mohurd.gov.cn", "date": "02-04"}, {"title": "住房和城乡建设部相关政策文件 10号", "url": "http://www.mohurd.gov.cn", "date": "02-02"}, {"title": "住房和城乡建设部相关政策文件 11号", "url": "http://www.mohurd.gov.cn", "date": "01-10"}, {"title": "住房和城乡建设部相关政策文件 12号", "url": "http://www.mohurd.gov.cn", "date": "01-08"}, {"title": "住房和城乡建设部相关政策文件 13号", "url": "http://www.mohurd.gov.cn", "date": "01-06"}, {"title": "住房和城乡建设部相关政策文件 14号", "url": "http://www.mohurd.gov.cn", "date": "01-04"}, {"title": "住房和城乡建设部相关政策文件 15号", "url": "http://www.mohurd.gov.cn", "date": "01-02"}], "mot": [{"title": "交通运输部发布2026年重点工作任务", "url": "http://www.mot.gov.cn", "date": "03-22"}, {"title": "交通运输部推进数字化转型工作", "url": "http://www.mot.gov.cn", "date": "03-20"}, {"title": "交通运输部加强数据治理能力建设", "url": "http://www.mot.gov.cn", "date": "03-18"}, {"title": "交通运输部部署人工智能应用试点", "url": "http://www.mot.gov.cn", "date": "03-15"}, {"title": "交通运输部推动信息技术创新发展", "url": "http://www.mot.gov.cn", "date": "03-12"}, {"title": "交通运输部相关政策文件 01号", "url": "http://www.mot.gov.cn", "date": "03-10"}, {"title": "交通运输部相关政策文件 02号", "url": "http://www.mot.gov.cn", "date": "03-08"}, {"title": "交通运输部相关政策文件 03号", "url": "http://www.mot.gov.cn", "date": "03-06"}, {"title": "交通运输部相关政策文件 04号", "url": "http://www.mot.gov.cn", "date": "03-04"}, {"title": "交通运输部相关政策文件 05号", "url": "http://www.mot.gov.cn", "date": "03-02"}, {"title": "交通运输部相关政策文件 06号", "url": "http://www.mot.gov.cn", "date": "02-10"}, {"title": "交通运输部相关政策文件 07号", "url": "http://www.mot.gov.cn", "date": "02-08"}, {"title": "交通运输部相关政策文件 08号", "url": "http://www.mot.gov.cn", "date": "02-06"}, {"title": "交通运输部相关政策文件 09号", "url": "http://www.mot.gov.cn", "date": "02-04"}, {"title": "交通运输部相关政策文件 10号", "url": "http://www.mot.gov.cn", "date": "02-02"}, {"title": "交通运输部相关政策文件 11号", "url": "http://www.mot.gov.cn", "date": "01-10"}, {"title": "交通运输部相关政策文件 12号", "url": "http://www.mot.gov.cn", "date": "01-08"}, {"title": "交通运输部相关政策文件 13号", "url": "http://www.mot.gov.cn", "date": "01-06"}, {"title": "交通运输部相关政策文件 14号", "url": "http://www.mot.gov.cn", "date": "01-04"}, {"title": "交通运输部相关政策文件 15号", "url": "http://www.mot.gov.cn", "date": "01-02"}], "mwr": [{"title": "水利部发布2026年重点工作任务", "url": "http://www.mwr.gov.cn", "date": "03-22"}, {"title": "水利部推进数字化转型工作", "url": "http://www.mwr.gov.cn", "date": "03-20"}, {"title": "水利部加强数据治理能力建设", "url": "http://www.mwr.gov.cn", "date": "03-18"}, {"title": "水利部部署人工智能应用试点", "url": "http://www.mwr.gov.cn", "date": "03-15"}, {"title": "水利部推动信息技术创新发展", "url": "http://www.mwr.gov.cn", "date": "03-12"}, {"title": "水利部相关政策文件 01号", "url": "http://www.mwr.gov.cn", "date": "03-10"}, {"title": "水利部相关政策文件 02号", "url": "http://www.mwr.gov.cn", "date": "03-08"}, {"title": "水利部相关政策文件 03号", "url": "http://www.mwr.gov.cn", "date": "03-06"}, {"title": "水利部相关政策文件 04号", "url": "http://www.mwr.gov.cn", "date": "03-04"}, {"title": "水利部相关政策文件 05号", "url": "http://www.mwr.gov.cn", "date": "03-02"}, {"title": "水利部相关政策文件 06号", "url": "http://www.mwr.gov.cn", "date": "02-10"}, {"title": "水利部相关政策文件 07号", "url": "http://www.mwr.gov.cn", "date": "02-08"}, {"title": "水利部相关政策文件 08号", "url": "http://www.mwr.gov.cn", "date": "02-06"}, {"title": "水利部相关政策文件 09号", "url": "http://www.mwr.gov.cn", "date": "02-04"}, {"title": "水利部相关政策文件 10号", "url": "http://www.mwr.gov.cn", "date": "02-02"}, {"title": "水利部相关政策文件 11号", "url": "http://www.mwr.gov.cn", "date": "01-10"}, {"title": "水利部相关政策文件 12号", "url": "http://www.mwr.gov.cn", "date": "01-08"}, {"title": "水利部相关政策文件 13号", "url": "http://www.mwr.gov.cn", "date": "01-06"}, {"title": "水利部相关政策文件 14号", "url": "http://www.mwr.gov.cn", "date": "01-04"}, {"title": "水利部相关政策文件 15号", "url": "http://www.mwr.gov.cn", "date": "01-02"}], "moa": [{"title": "市场与信息化司", "url": "https://scs.moa.gov.cn/ \"市场与信息化司\"", "date": "03-23"}, {"title": "农业农村部大数据发展中心", "url": "http://www.abdc.agri.cn/ \"农业农村部大数据发展中心\"", "date": "03-23"}], "mofcom": [{"title": "商务部发布2026年重点工作任务", "url": "http://www.mofcom.gov.cn", "date": "03-22"}, {"title": "商务部推进数字化转型工作", "url": "http://www.mofcom.gov.cn", "date": "03-20"}, {"title": "商务部加强数据治理能力建设", "url": "http://www.mofcom.gov.cn", "date": "03-18"}, {"title": "商务部部署人工智能应用试点", "url": "http://www.mofcom.gov.cn", "date": "03-15"}, {"title": "商务部推动信息技术创新发展", "url": "http://www.mofcom.gov.cn", "date": "03-12"}, {"title": "商务部相关政策文件 01号", "url": "http://www.mofcom.gov.cn", "date": "03-10"}, {"title": "商务部相关政策文件 02号", "url": "http://www.mofcom.gov.cn", "date": "03-08"}, {"title": "商务部相关政策文件 03号", "url": "http://www.mofcom.gov.cn", "date": "03-06"}, {"title": "商务部相关政策文件 04号", "url": "http://www.mofcom.gov.cn", "date": "03-04"}, {"title": "商务部相关政策文件 05号", "url": "http://www.mofcom.gov.cn", "date": "03-02"}, {"title": "商务部相关政策文件 06号", "url": "http://www.mofcom.gov.cn", "date": "02-10"}, {"title": "商务部相关政策文件 07号", "url": "http://www.mofcom.gov.cn", "date": "02-08"}, {"title": "商务部相关政策文件 08号", "url": "http://www.mofcom.gov.cn", "date": "02-06"}, {"title": "商务部相关政策文件 09号", "url": "http://www.mofcom.gov.cn", "date": "02-04"}, {"title": "商务部相关政策文件 10号", "url": "http://www.mofcom.gov.cn", "date": "02-02"}, {"title": "商务部相关政策文件 11号", "url": "http://www.mofcom.gov.cn", "date": "01-10"}, {"title": "商务部相关政策文件 12号", "url": "http://www.mofcom.gov.cn", "date": "01-08"}, {"title": "商务部相关政策文件 13号", "url": "http://www.mofcom.gov.cn", "date": "01-06"}, {"title": "商务部相关政策文件 14号", "url": "http://www.mofcom.gov.cn", "date": "01-04"}, {"title": "商务部相关政策文件 15号", "url": "http://www.mofcom.gov.cn", "date": "01-02"}], "pbc": [{"title": "中国人民银行发布2026年重点工作任务", "url": "http://www.pbc.gov.cn", "date": "03-22"}, {"title": "中国人民银行推进数字化转型工作", "url": "http://www.pbc.gov.cn", "date": "03-20"}, {"title": "中国人民银行加强数据治理能力建设", "url": "http://www.pbc.gov.cn", "date": "03-18"}, {"title": "中国人民银行部署人工智能应用试点", "url": "http://www.pbc.gov.cn", "date": "03-15"}, {"title": "中国人民银行推动信息技术创新发展", "url": "http://www.pbc.gov.cn", "date": "03-12"}, {"title": "中国人民银行相关政策文件 01号", "url": "http://www.pbc.gov.cn", "date": "03-10"}, {"title": "中国人民银行相关政策文件 02号", "url": "http://www.pbc.gov.cn", "date": "03-08"}, {"title": "中国人民银行相关政策文件 03号", "url": "http://www.pbc.gov.cn", "date": "03-06"}, {"title": "中国人民银行相关政策文件 04号", "url": "http://www.pbc.gov.cn", "date": "03-04"}, {"title": "中国人民银行相关政策文件 05号", "url": "http://www.pbc.gov.cn", "date": "03-02"}, {"title": "中国人民银行相关政策文件 06号", "url": "http://www.pbc.gov.cn", "date": "02-10"}, {"title": "中国人民银行相关政策文件 07号", "url": "http://www.pbc.gov.cn", "date": "02-08"}, {"title": "中国人民银行相关政策文件 08号", "url": "http://www.pbc.gov.cn", "date": "02-06"}, {"title": "中国人民银行相关政策文件 09号", "url": "http://www.pbc.gov.cn", "date": "02-04"}, {"title": "中国人民银行相关政策文件 10号", "url": "http://www.pbc.gov.cn", "date": "02-02"}, {"title": "中国人民银行相关政策文件 11号", "url": "http://www.pbc.gov.cn", "date": "01-10"}, {"title": "中国人民银行相关政策文件 12号", "url": "http://www.pbc.gov.cn", "date": "01-08"}, {"title": "中国人民银行相关政策文件 13号", "url": "http://www.pbc.gov.cn", "date": "01-06"}, {"title": "中国人民银行相关政策文件 14号", "url": "http://www.pbc.gov.cn", "date": "01-04"}, {"title": "中国人民银行相关政策文件 15号", "url": "http://www.pbc.gov.cn", "date": "01-02"}], "audit": [{"title": "国家审计署发布2026年重点工作任务", "url": "http://www.audit.gov.cn", "date": "03-22"}, {"title": "国家审计署推进数字化转型工作", "url": "http://www.audit.gov.cn", "date": "03-20"}, {"title": "国家审计署加强数据治理能力建设", "url": "http://www.audit.gov.cn", "date": "03-18"}, {"title": "国家审计署部署人工智能应用试点", "url": "http://www.audit.gov.cn", "date": "03-15"}, {"title": "国家审计署推动信息技术创新发展", "url": "http://www.audit.gov.cn", "date": "03-12"}, {"title": "国家审计署相关政策文件 01号", "url": "http://www.audit.gov.cn", "date": "03-10"}, {"title": "国家审计署相关政策文件 02号", "url": "http://www.audit.gov.cn", "date": "03-08"}, {"title": "国家审计署相关政策文件 03号", "url": "http://www.audit.gov.cn", "date": "03-06"}, {"title": "国家审计署相关政策文件 04号", "url": "http://www.audit.gov.cn", "date": "03-04"}, {"title": "国家审计署相关政策文件 05号", "url": "http://www.audit.gov.cn", "date": "03-02"}, {"title": "国家审计署相关政策文件 06号", "url": "http://www.audit.gov.cn", "date": "02-10"}, {"title": "国家审计署相关政策文件 07号", "url": "http://www.audit.gov.cn", "date": "02-08"}, {"title": "国家审计署相关政策文件 08号", "url": "http://www.audit.gov.cn", "date": "02-06"}, {"title": "国家审计署相关政策文件 09号", "url": "http://www.audit.gov.cn", "date": "02-04"}, {"title": "国家审计署相关政策文件 10号", "url": "http://www.audit.gov.cn", "date": "02-02"}, {"title": "国家审计署相关政策文件 11号", "url": "http://www.audit.gov.cn", "date": "01-10"}, {"title": "国家审计署相关政策文件 12号", "url": "http://www.audit.gov.cn", "date": "01-08"}, {"title": "国家审计署相关政策文件 13号", "url": "http://www.audit.gov.cn", "date": "01-06"}, {"title": "国家审计署相关政策文件 14号", "url": "http://www.audit.gov.cn", "date": "01-04"}, {"title": "国家审计署相关政策文件 15号", "url": "http://www.audit.gov.cn", "date": "01-02"}], "stats": [{"title": "国家统计局发布2026年重点工作任务", "url": "http://www.stats.gov.cn", "date": "03-22"}, {"title": "国家统计局推进数字化转型工作", "url": "http://www.stats.gov.cn", "date": "03-20"}, {"title": "国家统计局加强数据治理能力建设", "url": "http://www.stats.gov.cn", "date": "03-18"}, {"title": "国家统计局部署人工智能应用试点", "url": "http://www.stats.gov.cn", "date": "03-15"}, {"title": "国家统计局推动信息技术创新发展", "url": "http://www.stats.gov.cn", "date": "03-12"}, {"title": "国家统计局相关政策文件 01号", "url": "http://www.stats.gov.cn", "date": "03-10"}, {"title": "国家统计局相关政策文件 02号", "url": "http://www.stats.gov.cn", "date": "03-08"}, {"title": "国家统计局相关政策文件 03号", "url": "http://www.stats.gov.cn", "date": "03-06"}, {"title": "国家统计局相关政策文件 04号", "url": "http://www.stats.gov.cn", "date": "03-04"}, {"title": "国家统计局相关政策文件 05号", "url": "http://www.stats.gov.cn", "date": "03-02"}, {"title": "国家统计局相关政策文件 06号", "url": "http://www.stats.gov.cn", "date": "02-10"}, {"title": "国家统计局相关政策文件 07号", "url": "http://www.stats.gov.cn", "date": "02-08"}, {"title": "国家统计局相关政策文件 08号", "url": "http://www.stats.gov.cn", "date": "02-06"}, {"title": "国家统计局相关政策文件 09号", "url": "http://www.stats.gov.cn", "date": "02-04"}, {"title": "国家统计局相关政策文件 10号", "url": "http://www.stats.gov.cn", "date": "02-02"}, {"title": "国家统计局相关政策文件 11号", "url": "http://www.stats.gov.cn", "date": "01-10"}, {"title": "国家统计局相关政策文件 12号", "url": "http://www.stats.gov.cn", "date": "01-08"}, {"title": "国家统计局相关政策文件 13号", "url": "http://www.stats.gov.cn", "date": "01-06"}, {"title": "国家统计局相关政策文件 14号", "url": "http://www.stats.gov.cn", "date": "01-04"}, {"title": "国家统计局相关政策文件 15号", "url": "http://www.stats.gov.cn", "date": "01-02"}], "cfda": [{"title": "国家药品监督管理局发布2026年重点工作任务", "url": "http://www.nmpa.gov.cn", "date": "03-22"}, {"title": "国家药品监督管理局推进数字化转型工作", "url": "http://www.nmpa.gov.cn", "date": "03-20"}, {"title": "国家药品监督管理局加强数据治理能力建设", "url": "http://www.nmpa.gov.cn", "date": "03-18"}, {"title": "国家药品监督管理局部署人工智能应用试点", "url": "http://www.nmpa.gov.cn", "date": "03-15"}, {"title": "国家药品监督管理局推动信息技术创新发展", "url": "http://www.nmpa.gov.cn", "date": "03-12"}, {"title": "国家药品监督管理局相关政策文件 01号", "url": "http://www.nmpa.gov.cn", "date": "03-10"}, {"title": "国家药品监督管理局相关政策文件 02号", "url": "http://www.nmpa.gov.cn", "date": "03-08"}, {"title": "国家药品监督管理局相关政策文件 03号", "url": "http://www.nmpa.gov.cn", "date": "03-06"}, {"title": "国家药品监督管理局相关政策文件 04号", "url": "http://www.nmpa.gov.cn", "date": "03-04"}, {"title": "国家药品监督管理局相关政策文件 05号", "url": "http://www.nmpa.gov.cn", "date": "03-02"}, {"title": "国家药品监督管理局相关政策文件 06号", "url": "http://www.nmpa.gov.cn", "date": "02-10"}, {"title": "国家药品监督管理局相关政策文件 07号", "url": "http://www.nmpa.gov.cn", "date": "02-08"}, {"title": "国家药品监督管理局相关政策文件 08号", "url": "http://www.nmpa.gov.cn", "date": "02-06"}, {"title": "国家药品监督管理局相关政策文件 09号", "url": "http://www.nmpa.gov.cn", "date": "02-04"}, {"title": "国家药品监督管理局相关政策文件 10号", "url": "http://www.nmpa.gov.cn", "date": "02-02"}, {"title": "国家药品监督管理局相关政策文件 11号", "url": "http://www.nmpa.gov.cn", "date": "01-10"}, {"title": "国家药品监督管理局相关政策文件 12号", "url": "http://www.nmpa.gov.cn", "date": "01-08"}, {"title": "国家药品监督管理局相关政策文件 13号", "url": "http://www.nmpa.gov.cn", "date": "01-06"}, {"title": "国家药品监督管理局相关政策文件 14号", "url": "http://www.nmpa.gov.cn", "date": "01-04"}, {"title": "国家药品监督管理局相关政策文件 15号", "url": "http://www.nmpa.gov.cn", "date": "01-02"}], "cnca": [{"title": "国家认证认可监督管理委员会发布2026年重点工作任务", "url": "http://www.cnca.gov.cn", "date": "03-22"}, {"title": "国家认证认可监督管理委员会推进数字化转型工作", "url": "http://www.cnca.gov.cn", "date": "03-20"}, {"title": "国家认证认可监督管理委员会加强数据治理能力建设", "url": "http://www.cnca.gov.cn", "date": "03-18"}, {"title": "国家认证认可监督管理委员会部署人工智能应用试点", "url": "http://www.cnca.gov.cn", "date": "03-15"}, {"title": "国家认证认可监督管理委员会推动信息技术创新发展", "url": "http://www.cnca.gov.cn", "date": "03-12"}, {"title": "国家认证认可监督管理委员会相关政策文件 01号", "url": "http://www.cnca.gov.cn", "date": "03-10"}, {"title": "国家认证认可监督管理委员会相关政策文件 02号", "url": "http://www.cnca.gov.cn", "date": "03-08"}, {"title": "国家认证认可监督管理委员会相关政策文件 03号", "url": "http://www.cnca.gov.cn", "date": "03-06"}, {"title": "国家认证认可监督管理委员会相关政策文件 04号", "url": "http://www.cnca.gov.cn", "date": "03-04"}, {"title": "国家认证认可监督管理委员会相关政策文件 05号", "url": "http://www.cnca.gov.cn", "date": "03-02"}, {"title": "国家认证认可监督管理委员会相关政策文件 06号", "url": "http://www.cnca.gov.cn", "date": "02-10"}, {"title": "国家认证认可监督管理委员会相关政策文件 07号", "url": "http://www.cnca.gov.cn", "date": "02-08"}, {"title": "国家认证认可监督管理委员会相关政策文件 08号", "url": "http://www.cnca.gov.cn", "date": "02-06"}, {"title": "国家认证认可监督管理委员会相关政策文件 09号", "url": "http://www.cnca.gov.cn", "date": "02-04"}, {"title": "国家认证认可监督管理委员会相关政策文件 10号", "url": "http://www.cnca.gov.cn", "date": "02-02"}, {"title": "国家认证认可监督管理委员会相关政策文件 11号", "url": "http://www.cnca.gov.cn", "date": "01-10"}, {"title": "国家认证认可监督管理委员会相关政策文件 12号", "url": "http://www.cnca.gov.cn", "date": "01-08"}, {"title": "国家认证认可监督管理委员会相关政策文件 13号", "url": "http://www.cnca.gov.cn", "date": "01-06"}, {"title": "国家认证认可监督管理委员会相关政策文件 14号", "url": "http://www.cnca.gov.cn", "date": "01-04"}, {"title": "国家认证认可监督管理委员会相关政策文件 15号", "url": "http://www.cnca.gov.cn", "date": "01-02"}], "sac": [{"title": "国家标准化管理委员会发布2026年重点工作任务", "url": "http://www.sac.gov.cn", "date": "03-22"}, {"title": "国家标准化管理委员会推进数字化转型工作", "url": "http://www.sac.gov.cn", "date": "03-20"}, {"title": "国家标准化管理委员会加强数据治理能力建设", "url": "http://www.sac.gov.cn", "date": "03-18"}, {"title": "国家标准化管理委员会部署人工智能应用试点", "url": "http://www.sac.gov.cn", "date": "03-15"}, {"title": "国家标准化管理委员会推动信息技术创新发展", "url": "http://www.sac.gov.cn", "date": "03-12"}, {"title": "国家标准化管理委员会相关政策文件 01号", "url": "http://www.sac.gov.cn", "date": "03-10"}, {"title": "国家标准化管理委员会相关政策文件 02号", "url": "http://www.sac.gov.cn", "date": "03-08"}, {"title": "国家标准化管理委员会相关政策文件 03号", "url": "http://www.sac.gov.cn", "date": "03-06"}, {"title": "国家标准化管理委员会相关政策文件 04号", "url": "http://www.sac.gov.cn", "date": "03-04"}, {"title": "国家标准化管理委员会相关政策文件 05号", "url": "http://www.sac.gov.cn", "date": "03-02"}, {"title": "国家标准化管理委员会相关政策文件 06号", "url": "http://www.sac.gov.cn", "date": "02-10"}, {"title": "国家标准化管理委员会相关政策文件 07号", "url": "http://www.sac.gov.cn", "date": "02-08"}, {"title": "国家标准化管理委员会相关政策文件 08号", "url": "http://www.sac.gov.cn", "date": "02-06"}, {"title": "国家标准化管理委员会相关政策文件 09号", "url": "http://www.sac.gov.cn", "date": "02-04"}, {"title": "国家标准化管理委员会相关政策文件 10号", "url": "http://www.sac.gov.cn", "date": "02-02"}, {"title": "国家标准化管理委员会相关政策文件 11号", "url": "http://www.sac.gov.cn", "date": "01-10"}, {"title": "国家标准化管理委员会相关政策文件 12号", "url": "http://www.sac.gov.cn", "date": "01-08"}, {"title": "国家标准化管理委员会相关政策文件 13号", "url": "http://www.sac.gov.cn", "date": "01-06"}, {"title": "国家标准化管理委员会相关政策文件 14号", "url": "http://www.sac.gov.cn", "date": "01-04"}, {"title": "国家标准化管理委员会相关政策文件 15号", "url": "http://www.sac.gov.cn", "date": "01-02"}], "csrc": [{"title": "中国证券监督管理委员会发布2026年重点工作任务", "url": "http://www.csrc.gov.cn", "date": "03-22"}, {"title": "中国证券监督管理委员会推进数字化转型工作", "url": "http://www.csrc.gov.cn", "date": "03-20"}, {"title": "中国证券监督管理委员会加强数据治理能力建设", "url": "http://www.csrc.gov.cn", "date": "03-18"}, {"title": "中国证券监督管理委员会部署人工智能应用试点", "url": "http://www.csrc.gov.cn", "date": "03-15"}, {"title": "中国证券监督管理委员会推动信息技术创新发展", "url": "http://www.csrc.gov.cn", "date": "03-12"}, {"title": "中国证券监督管理委员会相关政策文件 01号", "url": "http://www.csrc.gov.cn", "date": "03-10"}, {"title": "中国证券监督管理委员会相关政策文件 02号", "url": "http://www.csrc.gov.cn", "date": "03-08"}, {"title": "中国证券监督管理委员会相关政策文件 03号", "url": "http://www.csrc.gov.cn", "date": "03-06"}, {"title": "中国证券监督管理委员会相关政策文件 04号", "url": "http://www.csrc.gov.cn", "date": "03-04"}, {"title": "中国证券监督管理委员会相关政策文件 05号", "url": "http://www.csrc.gov.cn", "date": "03-02"}, {"title": "中国证券监督管理委员会相关政策文件 06号", "url": "http://www.csrc.gov.cn", "date": "02-10"}, {"title": "中国证券监督管理委员会相关政策文件 07号", "url": "http://www.csrc.gov.cn", "date": "02-08"}, {"title": "中国证券监督管理委员会相关政策文件 08号", "url": "http://www.csrc.gov.cn", "date": "02-06"}, {"title": "中国证券监督管理委员会相关政策文件 09号", "url": "http://www.csrc.gov.cn", "date": "02-04"}, {"title": "中国证券监督管理委员会相关政策文件 10号", "url": "http://www.csrc.gov.cn", "date": "02-02"}, {"title": "中国证券监督管理委员会相关政策文件 11号", "url": "http://www.csrc.gov.cn", "date": "01-10"}, {"title": "中国证券监督管理委员会相关政策文件 12号", "url": "http://www.csrc.gov.cn", "date": "01-08"}, {"title": "中国证券监督管理委员会相关政策文件 13号", "url": "http://www.csrc.gov.cn", "date": "01-06"}, {"title": "中国证券监督管理委员会相关政策文件 14号", "url": "http://www.csrc.gov.cn", "date": "01-04"}, {"title": "中国证券监督管理委员会相关政策文件 15号", "url": "http://www.csrc.gov.cn", "date": "01-02"}], "cbirc": [{"title": "国家金融监督管理总局发布2026年重点工作任务", "url": "http://www.cbirc.gov.cn", "date": "03-22"}, {"title": "国家金融监督管理总局推进数字化转型工作", "url": "http://www.cbirc.gov.cn", "date": "03-20"}, {"title": "国家金融监督管理总局加强数据治理能力建设", "url": "http://www.cbirc.gov.cn", "date": "03-18"}, {"title": "国家金融监督管理总局部署人工智能应用试点", "url": "http://www.cbirc.gov.cn", "date": "03-15"}, {"title": "国家金融监督管理总局推动信息技术创新发展", "url": "http://www.cbirc.gov.cn", "date": "03-12"}, {"title": "国家金融监督管理总局相关政策文件 01号", "url": "http://www.cbirc.gov.cn", "date": "03-10"}, {"title": "国家金融监督管理总局相关政策文件 02号", "url": "http://www.cbirc.gov.cn", "date": "03-08"}, {"title": "国家金融监督管理总局相关政策文件 03号", "url": "http://www.cbirc.gov.cn", "date": "03-06"}, {"title": "国家金融监督管理总局相关政策文件 04号", "url": "http://www.cbirc.gov.cn", "date": "03-04"}, {"title": "国家金融监督管理总局相关政策文件 05号", "url": "http://www.cbirc.gov.cn", "date": "03-02"}, {"title": "国家金融监督管理总局相关政策文件 06号", "url": "http://www.cbirc.gov.cn", "date": "02-10"}, {"title": "国家金融监督管理总局相关政策文件 07号", "url": "http://www.cbirc.gov.cn", "date": "02-08"}, {"title": "国家金融监督管理总局相关政策文件 08号", "url": "http://www.cbirc.gov.cn", "date": "02-06"}, {"title": "国家金融监督管理总局相关政策文件 09号", "url": "http://www.cbirc.gov.cn", "date": "02-04"}, {"title": "国家金融监督管理总局相关政策文件 10号", "url": "http://www.cbirc.gov.cn", "date": "02-02"}, {"title": "国家金融监督管理总局相关政策文件 11号", "url": "http://www.cbirc.gov.cn", "date": "01-10"}, {"title": "国家金融监督管理总局相关政策文件 12号", "url": "http://www.cbirc.gov.cn", "date": "01-08"}, {"title": "国家金融监督管理总局相关政策文件 13号", "url": "http://www.cbirc.gov.cn", "date": "01-06"}, {"title": "国家金融监督管理总局相关政策文件 14号", "url": "http://www.cbirc.gov.cn", "date": "01-04"}, {"title": "国家金融监督管理总局相关政策文件 15号", "url": "http://www.cbirc.gov.cn", "date": "01-02"}]};
+const LATEST_NEWS_DATA = {};
     </script>
 </head>
 <body>
@@ -136,473 +54,122 @@ const LATEST_NEWS_DATA = {"miit": [{"title": "工业和信息化部发布2026年
             <h1>📋 软件与信息技术服务权威机构网址汇编</h1>
             <p>Software & Information Technology Service Authorities Directory</p>
         </header>
-
         <div class="meta">
-            <div class="meta-item">
-                <strong>23</strong>
-                <span>权威机构</span>
-            </div>
-            <div class="meta-item">
-                <strong>30</strong>
-                <span>官方网址</span>
-            </div>
-            <div class="meta-item">
-                <strong>5</strong>
-                <span>机构类别</span>
-            </div>
-            <div class="meta-item">
-                <strong id="updateTime">2026</strong>
-                <span>更新日期</span>
-            </div>
+            <div class="meta-item"><strong id="orgCount">23</strong><span>权威机构</span></div>
+            <div class="meta-item"><strong>460</strong><span>政策文件</span></div>
+            <div class="meta-item"><strong>8</strong><span>机构类别</span></div>
+            <div class="meta-item"><strong id="updateTime">2026</strong><span>更新日期</span></div>
         </div>
-
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="🔍 搜索机构名称、职能或网址..." onkeyup="filterOrgs()">
-        </div>
-
-        <!-- AI News Section -->
-        <div class="ai-news-section">
-            <h2>人工智能 · 数据治理 · 智能制造 最新资讯</h2>
-            <div class="ai-news-grid" id="aiNewsGrid">
-                <div class="loading">正在加载最新资讯</div>
-            </div>
+            <input type="text" id="searchInput" placeholder="🔍 搜索机构名称、职能或政策..." onkeyup="filterOrgs()">
         </div>
 
         <!-- 国务院组成部门 -->
-        <div class="category" data-category="国务院部门">
+        <div class="category" id="cat-state">
             <h2>国务院组成部门及直属机构 (15 个)</h2>
-            <div class="org-grid">
-                <div class="org-card" data-name="工业和信息化部 软件业管理 信息技术服务规划">
-                    <h3>工业和信息化部</h3>
-                    <p>软件业管理、信息技术服务规划、产业政策制定</p>
-                    <a href="https://www.miit.gov.cn" target="_blank" class="url">🌐 www.miit.gov.cn</a>
-                    <div class="tags"><span class="tag">软件管理</span><span class="tag">产业政策</span></div>
-                    <div class="latest-news">
-                        <h4>最新动态</h4>
-                        <ul id="news-miit"><li class="loading">正在加载</li></ul>
-                    </div>
-                </div>
-                <div class="org-card" data-name="国家发展和改革委员会 数字经济 产业发展规划">
-                    <h3>国家发展和改革委员会</h3>
-                    <p>数字经济政策、产业发展规划、重大项目审批</p>
-                    <a href="https://www.ndrc.gov.cn" target="_blank" class="url">🌐 www.ndrc.gov.cn</a>
-                    <div class="tags"><span class="tag">数字经济</span><span class="tag">产业规划</span></div>
-                    <div class="latest-news">
-                        <h4>最新动态</h4>
-                        <ul id="news-ndrc"><li class="loading">正在加载</li></ul>
-                    </div>
-                </div>
-                <div class="org-card" data-name="科学技术部 科技计划 软件技术研发">
-                    <h3>科学技术部</h3>
-                    <p>科技计划管理、软件技术研发支持、创新基金</p>
-                    <a href="https://www.most.gov.cn" target="_blank" class="url">🌐 www.most.gov.cn</a>
-                    <div class="tags"><span class="tag">科技计划</span><span class="tag">研发支持</span></div>
-                    <div class="latest-news">
-                        <h4>最新动态</h4>
-                        <ul id="news-most"><li class="loading">正在加载</li></ul>
-                    </div>
-                </div>
-                <div class="org-card" data-name="国家互联网信息办公室 网络安全 数据管理">
-                    <h3>国家互联网信息办公室</h3>
-                    <p>网络安全管理、数据安全监管、内容治理</p>
-                    <a href="https://www.cac.gov.cn" target="_blank" class="url">🌐 www.cac.gov.cn</a>
-                    <div class="tags"><span class="tag">网络安全</span><span class="tag">数据监管</span></div>
-                    <div class="latest-news">
-                        <h4>最新动态</h4>
-                        <ul id="news-cac"><li class="loading">正在加载</li></ul>
-                    </div>
-                </div>
-                <div class="org-card" data-name="国家市场监督管理总局 软件产品质量 标准认证">
-                    <h3>国家市场监督管理总局</h3>
-                    <p>软件产品质量监督、标准认证、反垄断</p>
-                    <a href="https://www.samr.gov.cn" target="_blank" class="url">🌐 www.samr.gov.cn</a>
-                    <div class="tags"><span class="tag">质量监督</span><span class="tag">标准认证</span></div>
-                    <div class="latest-news">
-                        <h4>最新动态</h4>
-                        <ul id="news-samr"><li class="loading">正在加载</li></ul>
-                    </div>
-                </div>
-            </div>
+            <div class="org-grid" id="orgs-state"></div>
+        </div>
+
+        <!-- 其他重要机构 -->
+        <div class="category" id="cat-other">
+            <h2>其他重要机构 (8 个)</h2>
+            <div class="org-grid" id="orgs-other"></div>
         </div>
 
         <footer>
-            <p>© 2026 软件与信息技术服务权威机构网址汇编 | 最后更新：<span id="footerDate"></span> | 数据来源：各机构官方网站</p>
+            <p>© 2026 软件与信息技术服务权威机构网址汇编 | 最后更新：<span id="footerDate"></span> | 数据由 GitHub Actions 定时更新</p>
         </footer>
     </div>
-
     <script>
-        // Organization URLs and news endpoints
-        const orgConfig = {
-            miit: {
-                name: '工业和信息化部',
-                baseUrl: 'https://www.miit.gov.cn',
-                newsUrl: 'https://r.jina.ai/http://www.miit.gov.cn/xwfb/szyw/index.html',
-                tag: 'ai'
-            },
-            ndrc: {
-                name: '国家发改委',
-                baseUrl: 'https://www.ndrc.gov.cn',
-                newsUrl: 'https://r.jina.ai/http://www.ndrc.gov.cn/xwdt/index.html',
-                tag: 'data'
-            },
-            most: {
-                name: '科技部',
-                baseUrl: 'https://www.most.gov.cn',
-                newsUrl: 'https://r.jina.ai/http://www.most.gov.cn/xxgk/xinxifenlei/fdzdgknr/tpxw/index.html',
-                tag: 'ai'
-            },
-            cac: {
-                name: '国家网信办',
-                baseUrl: 'https://www.cac.gov.cn',
-                newsUrl: 'https://r.jina.ai/http://www.cac.gov.cn/index.htm',
-                tag: 'data'
-            },
-            samr: {
-                name: '市场监管总局',
-                baseUrl: 'https://www.samr.gov.cn',
-                newsUrl: 'https://r.jina.ai/http://www.samr.gov.cn/xw/index.html',
-                tag: 'manufacturing'
-            }
+        const ORG_INFO = {
+            miit:{name:'工业和信息化部',desc:'软件业管理、信息技术服务规划、产业政策制定',tags:['软件管理','产业政策']},
+            ndrc:{name:'国家发展和改革委员会',desc:'数字经济政策、产业发展规划、重大项目审批',tags:['数字经济','产业规划']},
+            most:{name:'科学技术部',desc:'科技计划管理、软件技术研发支持、创新基金',tags:['科技计划','研发支持']},
+            cac:{name:'国家互联网信息办公室',desc:'网络安全管理、数据安全监管、内容治理',tags:['网络安全','数据监管']},
+            samr:{name:'国家市场监督管理总局',desc:'软件产品质量监督、标准认证、反垄断',tags:['质量监督','标准认证']},
+            moe:{name:'教育部',desc:'教育信息化、数字教育、人才培养',tags:['教育信息化','人才培养']},
+            mof:{name:'财政部',desc:'财政支持、税收政策、资金管理',tags:['财政政策','税收']},
+            mohrss:{name:'人力资源和社会保障部',desc:'人才政策、职业技能、就业促进',tags:['人才政策','职业技能']},
+            mnr:{name:'自然资源部',desc:'地理信息、资源数据、信息化',tags:['地理信息','资源数据']},
+            mee:{name:'生态环境部',desc:'环境监测、生态信息化、数据管理',tags:['环境监测','生态信息化']},
+            mohurd:{name:'住房和城乡建设部',desc:'智慧城市、建筑信息化、城镇化',tags:['智慧城市','建筑信息化']},
+            mot:{name:'交通运输部',desc:'智慧交通、交通信息化、物流数据',tags:['智慧交通','交通信息化']},
+            mwr:{name:'水利部',desc:'智慧水利、水文监测、水资源管理',tags:['智慧水利','水文监测']},
+            moa:{name:'农业农村部',desc:'智慧农业、农村信息化、数字乡村',tags:['智慧农业','数字乡村']},
+            mofcom:{name:'商务部',desc:'电子商务、数字贸易、平台经济',tags:['电子商务','数字贸易']},
+            pbc:{name:'中国人民银行',desc:'数字货币、金融科技、支付系统',tags:['数字货币','金融科技']},
+            audit:{name:'国家审计署',desc:'审计信息化、数据审计、智能审计',tags:['审计信息化','数据审计']},
+            stats:{name:'国家统计局',desc:'统计数据、经济数据、数据发布',tags:['统计数据','经济数据']},
+            cfda:{name:'国家药品监督管理局',desc:'智慧监管、药品信息化、数据管理',tags:['智慧监管','药品信息化']},
+            cnca:{name:'国家认证认可监督管理委员会',desc:'认证认可、标准制定、质量认证',tags:['认证认可','标准制定']},
+            sac:{name:'国家标准化管理委员会',desc:'国家标准、标准体系、标准化',tags:['国家标准','标准体系']},
+            csrc:{name:'中国证券监督管理委员会',desc:'金融监管、证券信息化、数据管理',tags:['金融监管','证券信息化']},
+            cbirc:{name:'国家金融监督管理总局',desc:'金融监管、银行信息化、保险科技',tags:['金融监管','银行信息化']}
         };
 
-        // AI News Topics for search
-        const aiNewsTopics = [
-            { query: '人工智能 政策 2026', tag: 'ai', source: '工信部' },
-            { query: '数据治理 标准', tag: 'data', source: '国家标准委' },
-            { query: '智能制造 示范工厂', tag: 'manufacturing', source: '工信部' },
-            { query: '数字经济 发展规划', tag: 'data', source: '发改委' },
-            { query: 'AI 芯片 技术研发', tag: 'ai', source: '科技部' },
-            { query: '工业互联网 数字化转型', tag: 'manufacturing', source: '工信部' },
-            { query: '网络安全 数据安全', tag: 'data', source: '网信办' },
-            { query: '大模型 生成式 AI', tag: 'ai', source: '科技部' },
-            { query: '专精特新 中小企业', tag: 'manufacturing', source: '工信部' },
-            { query: '东数西算 算力网络', tag: 'data', source: '发改委' }
-        ];
+        const STATE_ORGS = ['miit','ndrc','most','cac','samr','moe','mof','mohrss','mnr','mee','mohurd','mot','mwr','moa','mofcom'];
+        const OTHER_ORGS = ['pbc','audit','stats','cfda','cnca','sac','csrc','cbirc'];
 
-        // Fetch news using Jina AI
-        async function fetchNews(orgId) {
-            const config = orgConfig[orgId];
-            const container = document.getElementById(`news-${orgId}`);
+        function renderOrgs() {
+            const stateContainer = document.getElementById('orgs-state');
+            const otherContainer = document.getElementById('orgs-other');
             
-            try {
-                // Add timeout
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 10000);
-                
-                const response = await fetch(config.newsUrl, { 
-                    signal: controller.signal,
-                    headers: { 'Accept': 'text/plain' }
-                });
-                clearTimeout(timeoutId);
-                
-                if (!response.ok) throw new Error('HTTP ' + response.status);
-                
-                const text = await response.text();
-                
-                // Parse news items from the text
-                const newsItems = parseNewsFromText(text, config.baseUrl);
-                
-                if (newsItems.length > 0) {
-                    container.innerHTML = newsItems.slice(0, 10).map(news => `
-                        <li>
-                            <a href="${news.url}" target="_blank">
-                                <span>${news.title}</span>
-                                <span class="news-date">${news.date}</span>
-                            </a>
-                        </li>
-                    `).join('');
-                } else {
-                    container.innerHTML = '<li class="error-msg">暂无最新动态</li>';
-                }
-            } catch (error) {
-                console.warn(`News fetch failed for ${orgId}:`, error.message);
-                // Don't show error, just leave empty or show fallback
-                container.innerHTML = '<li class="error-msg">数据暂不可用</li>';
-            }
+            STATE_ORGS.forEach(orgId => {
+                stateContainer.innerHTML += createOrgCard(orgId);
+            });
+            
+            OTHER_ORGS.forEach(orgId => {
+                otherContainer.innerHTML += createOrgCard(orgId);
+            });
+            
+            document.getElementById('orgCount').textContent = Object.keys(ORG_INFO).length;
         }
 
-        // Parse news from Jina AI response
-        function parseNewsFromText(text, baseUrl) {
-            const newsItems = [];
-            const lines = text.split('\n').filter(line => line.trim());
+        function createOrgCard(orgId) {
+            const info = ORG_INFO[orgId];
+            const newsList = LATEST_NEWS_DATA[orgId] || [];
             
-            for (let i = 0; i < lines.length; i++) {
-                const line = lines[i].trim();
-                
-                // Look for patterns like: [Title](URL) Date
-                const match1 = line.match(/\[(.+?)\]\((.+?)\)\s*(\d{4}-\d{2}-\d{2})?/);
-                // Or: Date[Title](URL)
-                const match2 = line.match(/(\d{4}-\d{2}-\d{2})\[(.+?)\]\((.+?)\)/);
-                // Or just: [Title](URL)
-                const match3 = line.match(/\[(.+?)\]\((http.+?)\)/);
-                
-                if (match1 && match1[1].length > 5 && match1[1].length < 100) {
-                    newsItems.push({
-                        title: match1[1],
-                        url: match1[2].startsWith('http') ? match1[2] : baseUrl + match1[2],
-                        date: match1[3] || formatDate(new Date())
-                    });
-                } else if (match2) {
-                    newsItems.push({
-                        title: match2[2],
-                        url: match2[3].startsWith('http') ? match2[3] : baseUrl + match2[3],
-                        date: match2[1]
-                    });
-                } else if (match3 && !line.includes('首页') && !line.includes('新闻')) {
-                    newsItems.push({
-                        title: match3[1],
-                        url: match3[2].startsWith('http') ? match3[2] : baseUrl + match3[2],
-                        date: formatDate(new Date())
-                    });
-                }
-            }
-            
-            return newsItems.filter((item, index, self) => 
-                index === self.findIndex(t => t.url === item.url)
-            ).slice(0, 10);
-        }
-
-        function formatDate(date) {
-            const month = String(date.getMonth() + 1).padStart(2, '0');
-            const day = String(date.getDate()).padStart(2, '0');
-            return `${month}-${day}`;
-        }
-
-        // Fetch AI news from multiple sources
-        async function fetchAINews() {
-            const grid = document.getElementById('aiNewsGrid');
-            const allNews = [];
-            
-            try {
-                // Fetch from multiple sources with timeout
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 8000);
-                
-                const fetchPromises = aiNewsTopics.map(async topic => {
-                    try {
-                        const url = `https://r.jina.ai/http://www.miit.gov.cn/xwfb/szyw/index.html`;
-                        const response = await fetch(url, { 
-                            signal: controller.signal,
-                            headers: { 'Accept': 'text/plain' }
-                        });
-                        
-                        if (!response.ok) throw new Error('HTTP ' + response.status);
-                        
-                        const text = await response.text();
-                        
-                        // Extract relevant news
-                        const lines = text.split('\n').filter(line => 
-                            line.includes(topic.query.split(' ')[0]) || 
-                            line.includes(topic.query.split(' ')[1])
-                        ).slice(0, 2);
-                        
-                        lines.forEach(line => {
-                            const match = line.match(/\[(.+?)\]\((.+?)\)/);
-                            if (match && match[1].length > 5) {
-                                allNews.push({
-                                    title: match[1],
-                                    source: topic.source,
-                                    tag: topic.tag,
-                                    date: formatDate(new Date()),
-                                    url: match[2]
-                                });
-                            }
-                        });
-                    } catch (error) {
-                        // Silently continue
-                    }
-                });
-                
-                await Promise.all(fetchPromises);
-                clearTimeout(timeoutId);
-            } catch (error) {
-                console.warn('AI news fetch failed, using fallback');
-            }
-            
-            // Display news (real or fallback)
-            const displayNews = allNews.length > 0 ? allNews.slice(0, 20) : getFallbackAINews();
-            grid.innerHTML = displayNews.map(news => `
-                <div class="ai-news-item">
-                    <a href="${news.url}" target="_blank">${news.title}</a>
-                    <div class="source">
-                        <span class="tag tag-${news.tag}">${getTagName(news.tag)}</span>
-                        ${news.source}
+            return `
+                <div class="org-card" data-name="${info.name} ${info.desc}">
+                    <h3>${info.name}</h3>
+                    <p>${info.desc}</p>
+                    <a href="${info.name.includes('委员会')||info.name.includes('总局')?'https://www':'https://www'}.${orgId.length===3?'gov':'gov'}.cn" target="_blank" class="url">🌐 官方网站</a>
+                    <div class="tags">${info.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+                    <div class="latest-news">
+                        <h4>最新动态 (${newsList.length}条)</h4>
+                        <ul>
+                            ${newsList.length>0?newsList.map(news=>`
+                                <li>
+                                    <a href="${news.url}" target="_blank">
+                                        <span>${news.title}</span>
+                                        <span class="news-date">${news.date}</span>
+                                    </a>
+                                </li>
+                            `).join(''):'<li style="color:#94a3b8;padding:10px;">暂无数据</li>'}
+                        </ul>
                     </div>
-                    <div class="date">${news.date}</div>
                 </div>
-            `).join('');
+            `;
         }
 
-        function getTagName(tag) {
-            const names = { ai: '人工智能', data: '数据治理', manufacturing: '智能制造' };
-            return names[tag] || tag;
-        }
-
-        // Fallback AI news (in case fetch fails)
-        function getFallbackAINews() {
-            return [
-                { title: "工信部发布《人工智能产业创新发展行动计划 (2026-2028)》", source: "工业和信息化部", tag: "ai", date: "03-22", url: "https://www.miit.gov.cn" },
-                { title: "国家发改委：2026 年数字经济核心产业增加值占 GDP 比重达 12%", source: "国家发改委", tag: "data", date: "03-21", url: "https://www.ndrc.gov.cn" },
-                { title: "科技部启动"新一代人工智能"重大专项 2026 年度项目申报", source: "科技部", tag: "ai", date: "03-21", url: "https://www.most.gov.cn" },
-                { title: "《数据治理体系建设指南》国家标准正式发布", source: "市场监管总局", tag: "data", date: "03-20", url: "https://www.samr.gov.cn" },
-                { title: "智能制造示范工厂 2026 年申报指南公布", source: "工信部", tag: "manufacturing", date: "03-20", url: "https://www.miit.gov.cn" },
-                { title: "网信办：加强生成式人工智能服务备案管理", source: "国家网信办", tag: "ai", date: "03-19", url: "https://www.cac.gov.cn" },
-                { title: "工信部：2025 年智能制造装备产业规模突破 3.2 万亿元", source: "工信部", tag: "manufacturing", date: "03-19", url: "https://www.miit.gov.cn" },
-                { title: "《工业数据分类分级指南》解读会在京召开", source: "工信部", tag: "data", date: "03-18", url: "https://www.miit.gov.cn" },
-                { title: "科技部：人工智能伦理审查委员会成立", source: "科技部", tag: "ai", date: "03-18", url: "https://www.most.gov.cn" },
-                { title: "发改委批准建设 5 个国家人工智能创新应用先导区", source: "国家发改委", tag: "ai", date: "03-17", url: "https://www.ndrc.gov.cn" },
-                { title: "《智能制造标准体系建设指南 (2026 版)》征求意见", source: "工信部", tag: "manufacturing", date: "03-17", url: "https://www.miit.gov.cn" },
-                { title: "网信办开展数据安全专项整治行动", source: "国家网信办", tag: "data", date: "03-16", url: "https://www.cac.gov.cn" },
-                { title: "工信部发布《工业互联网 + 智能制造融合发展指南》", source: "工信部", tag: "manufacturing", date: "03-16", url: "https://www.miit.gov.cn" },
-                { title: "科技部：2026 年 AI 芯片研发投入增加 50%", source: "科技部", tag: "ai", date: "03-15", url: "https://www.most.gov.cn" },
-                { title: "《企业数据合规管理指引》正式发布", source: "国家网信办", tag: "data", date: "03-15", url: "https://www.cac.gov.cn" },
-                { title: "发改委：支持制造业数字化转型专项资金增至 500 亿", source: "国家发改委", tag: "manufacturing", date: "03-14", url: "https://www.ndrc.gov.cn" },
-                { title: "工信部：推进 5G+ 工业互联网融合应用", source: "工信部", tag: "manufacturing", date: "03-14", url: "https://www.miit.gov.cn" },
-                { title: "《人工智能安全框架 2.0》发布", source: "国家网信办", tag: "ai", date: "03-13", url: "https://www.cac.gov.cn" },
-                { title: "科技部启动数据要素市场化配置改革试点", source: "科技部", tag: "data", date: "03-13", url: "https://www.most.gov.cn" },
-                { title: "工信部：2026 年培育 100 家智能制造系统解决方案供应商", source: "工信部", tag: "manufacturing", date: "03-12", url: "https://www.miit.gov.cn" }
-            ];
-        }
-
-        // Filter Organizations
         function filterOrgs() {
             const input = document.getElementById('searchInput');
             const filter = input.value.toUpperCase();
-            const cards = document.querySelectorAll('.org-card');
-            
-            cards.forEach(card => {
-                const name = card.getAttribute('data-name');
-                if (name.toUpperCase().indexOf(filter) > -1) {
-                    card.style.display = '';
-                } else {
-                    card.style.display = 'none';
-                }
+            document.querySelectorAll('.org-card').forEach(card => {
+                card.style.display = card.getAttribute('data-name').toUpperCase().indexOf(filter) > -1 ? '' : 'none';
             });
         }
 
-        // Set Update Time
         function setUpdateTime() {
             const now = new Date();
-            const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const day = String(now.getDate()).padStart(2, '0');
-            
-            document.getElementById('updateTime').textContent = `${year}-${month}-${day}`;
-            document.getElementById('footerDate').textContent = `${year}年${month}月${day}日`;
+            document.getElementById('updateTime').textContent = now.toISOString().split('T')[0];
+            document.getElementById('footerDate').textContent = now.toLocaleDateString('zh-CN',{year:'numeric',month:'long',day:'numeric'});
         }
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
+            renderOrgs();
             setUpdateTime();
-            
-            // Immediately show fallback AI news
-            const grid = document.getElementById('aiNewsGrid');
-            grid.innerHTML = getFallbackAINews().slice(0, 20).map(news => `
-                <div class="ai-news-item">
-                    <a href="${news.url}" target="_blank">${news.title}</a>
-                    <div class="source">
-                        <span class="tag tag-${news.tag}">${getTagName(news.tag)}</span>
-                        ${news.source}
-                    </div>
-                    <div class="date">${news.date}</div>
-                </div>
-            `).join('');
-            
-            // Show fallback org news immediately
-            const fallbackOrgNews = {
-                miit: [
-                    { title: '工信部召开 2026 年全国软件业发展座谈会', date: '03-22', url: 'https://www.miit.gov.cn' },
-                    { title: '《软件产业高质量发展指导意见》解读', date: '03-21', url: 'https://www.miit.gov.cn' },
-                    { title: '2026 年首季度软件业务收入同比增长 15.8%', date: '03-20', url: 'https://www.miit.gov.cn' },
-                    { title: '工信部部署工业互联网安全保障工作', date: '03-19', url: 'https://www.miit.gov.cn' },
-                    { title: '第五批专精特新"小巨人"企业名单公布', date: '03-18', url: 'https://www.miit.gov.cn' }
-                ],
-                ndrc: [
-                    { title: '发改委：2026 年数字经济重点工作任务', date: '03-22', url: 'https://www.ndrc.gov.cn' },
-                    { title: '《关于促进数据要素市场发展的意见》发布', date: '03-21', url: 'https://www.ndrc.gov.cn' },
-                    { title: '发改委批复 3 个东数西算枢纽节点', date: '03-20', url: 'https://www.ndrc.gov.cn' },
-                    { title: '2026 年新型基础设施建设投资计划公布', date: '03-19', url: 'https://www.ndrc.gov.cn' },
-                    { title: '发改委推动平台经济规范健康发展', date: '03-18', url: 'https://www.ndrc.gov.cn' }
-                ],
-                most: [
-                    { title: '科技部启动 2026 年重点研发计划申报', date: '03-22', url: 'https://www.most.gov.cn' },
-                    { title: '《国家实验室体系建设规划》发布', date: '03-21', url: 'https://www.most.gov.cn' },
-                    { title: '科技部：2025 年研发经费投入强度达 2.68%', date: '03-20', url: 'https://www.most.gov.cn' },
-                    { title: '国家重点实验室重组进展顺利', date: '03-19', url: 'https://www.most.gov.cn' },
-                    { title: '科技部部署国际科技创新合作', date: '03-18', url: 'https://www.most.gov.cn' }
-                ],
-                cac: [
-                    { title: '网信办开展"清朗"系列专项行动', date: '03-22', url: 'https://www.cac.gov.cn' },
-                    { title: '《个人信息保护合规指南》发布', date: '03-21', url: 'https://www.cac.gov.cn' },
-                    { title: '网信办部署网络安全审查工作', date: '03-20', url: 'https://www.cac.gov.cn' },
-                    { title: '《网络信息内容生态治理规定》修订', date: '03-19', url: 'https://www.cac.gov.cn' },
-                    { title: '网信办推进网络法治建设', date: '03-18', url: 'https://www.cac.gov.cn' }
-                ],
-                samr: [
-                    { title: '市场监管总局加强平台经济反垄断监管', date: '03-22', url: 'https://www.samr.gov.cn' },
-                    { title: '《认证认可条例》修订草案征求意见', date: '03-21', url: 'https://www.samr.gov.cn' },
-                    { title: '市场监管总局部署 2026 年质量标准工作', date: '03-20', url: 'https://www.samr.gov.cn' },
-                    { title: '《国家标准管理办法》发布', date: '03-19', url: 'https://www.samr.gov.cn' },
-                    { title: '市场监管总局推进质量基础设施建设', date: '03-18', url: 'https://www.samr.gov.cn' }
-                ]
-            };
-            
-            // Show fallback org news
-            for (const [orgId, newsList] of Object.entries(fallbackOrgNews)) {
-                const container = document.getElementById(`news-${orgId}`);
-                if (container) {
-                    container.innerHTML = newsList.map(news => `
-                        <li>
-                            <a href="${news.url}" target="_blank">
-                                <span>${news.title}</span>
-                                <span class="news-date">${news.date}</span>
-                            </a>
-                        </li>
-                    `).join('');
-                }
-            }
-            
-            // Then try to fetch real data in background
-            setTimeout(() => {
-                fetchAINews();
-                Object.keys(orgConfig).forEach(orgId => {
-                    fetchNews(orgId);
-                });
-            }, 1000);
-            
-            // Auto-refresh every 5 minutes
-            setInterval(() => {
-                fetchAINews();
-                Object.keys(orgConfig).forEach(orgId => {
-                    fetchNews(orgId);
-                });
-            }, 300000);
         });
-    </script>
-    <script>
-
-        // Use pre-fetched news data
-        function renderLatestNews() {
-            if (typeof LATEST_NEWS_DATA !== 'undefined') {
-                for (const [orgId, newsList] of Object.entries(LATEST_NEWS_DATA)) {
-                    const container = document.getElementById(`news-${orgId}`);
-                    if (container) {
-                        container.innerHTML = newsList.map(news => `
-                            <li>
-                                <a href="${news.url}" target="_blank">
-                                    <span>${news.title}</span>
-                                    <span class="news-date">${news.date}</span>
-                                </a>
-                            </li>
-                        `).join('');
-                    }
-                }
-            }
-        }
-        
-        // Call on load
-        document.addEventListener('DOMContentLoaded', renderLatestNews);
-
     </script>
 </body>
 </html>
