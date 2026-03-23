@@ -1,0 +1,48 @@
+name: Update News Data
+
+on:
+  schedule:
+    # 每天 UTC 时间 0 点、8 点、16 点运行（北京时间 8 点、16 点、24 点）
+    - cron: '0 0,8,16 * * *'
+  workflow_dispatch: # 允许手动触发
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4
+
+      - name: Fetch and update news
+        run: |
+          python .github/scripts/fetch_news.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git add 权威机构网址汇编.html
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "📰 Auto-update news data $(date +'%Y-%m-%d %H:%M')"
+            git push
+          fi
